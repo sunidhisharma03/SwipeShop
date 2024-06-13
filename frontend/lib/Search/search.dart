@@ -35,7 +35,7 @@ class _SearchState extends State<Search> {
           child: Padding(
             padding: EdgeInsets.only(top: 70),
             child: Container(
-              width: 380, // Adjust the width as needed
+              width: double.infinity, // Adjust the width as needed
               height: 45, // Adjust the height as needed
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.8),
@@ -50,7 +50,7 @@ class _SearchState extends State<Search> {
                   fillColor: Colors.white,
                   hintText: 'Search for products',
                   prefixIcon: Icon(Iconsax.search_normal),
-                  contentPadding: EdgeInsets.symmetric(vertical: 18.0),
+                  contentPadding: EdgeInsets.symmetric(vertical: 20.0),
                 ),
               ),
             ),

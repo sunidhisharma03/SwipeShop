@@ -29,6 +29,7 @@ class _InboxState extends State<Inbox> {
                 1
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
             )),
+        Text("Inbox")
       ],
     ));
   }
