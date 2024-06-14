@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart'; // Make sure you have this package in your pubspec.yaml
+import 'package:iconsax/iconsax.dart';
+import 'package:video_player/video_player.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,27 +10,58 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late VideoPlayerController _controller;
+  bool _isInitialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = VideoPlayerController.asset('assets/videos/a.mp4')
+      ..initialize().then((_) {
+        setState(() {
+          _isInitialized = true;
+        });
+        _controller.setLooping(true);
+        _controller.play();
+      }).catchError((error) {
+        // Handle error here
+        print("Error initializing video: $error");
+      });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
+          _isInitialized
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: VideoPlayer(_controller),
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
+                ),
           Container(
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.black, Colors.grey],
+                colors: [
+                  Colors.black.withOpacity(0.5),
+                  Colors.grey.withOpacity(0.5)
+                ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
             ),
-          ),
-          Image.asset(
-            'assets/images/1901.png',
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
           ),
           Positioned(
             right: 10,
@@ -42,7 +72,6 @@ class _HomeState extends State<Home> {
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(
-                    // Placeholder for user profile icon
                     Iconsax.message_circle,
                     size: 35,
                     color: Colors.white,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493682888771",
+    "project_id": "swipeshop-f1acf",
+    "storage_bucket": "swipeshop-f1acf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493682888771:android:98ac34f26598bfbb3dc4f6",
+        "android_client_info": {
+          "package_name": "com.example.swipeshop_frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWuW2Ud_WKFPbPUEAva1jl_9cAOIutMAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
