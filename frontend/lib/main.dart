@@ -10,9 +10,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,82 +20,118 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const indexPage(),
+      home: const IndexPage(),
     );
   }
 }
 
-class indexPage extends StatefulWidget {
-  const indexPage({super.key});
-  
+class IndexPage extends StatefulWidget {
+  const IndexPage({Key? key});
+
   @override
-  State<indexPage> createState() => _indexPageState();
+  State<IndexPage> createState() => _IndexPageState();
 }
 
-class _indexPageState extends State<indexPage> {
+class _IndexPageState extends State<IndexPage> {
   int _selectedIndex = 1;
-  
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _selectedIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   void _navigateBottomBar(int index) {
     setState(() {
       _selectedIndex = index;
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
     });
   }
-
-  final List<Widget> _pages = [Search(), Home(), Inbox()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: Text(
-            "Swipe Shop",
-            style: GoogleFonts.poppins(
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-                color: Colors.grey.shade600),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(
+          "Swipe Shop",
+          style: GoogleFonts.poppins(
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey.shade600,
           ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
         ),
-        body: Stack(children: [
-          _pages[_selectedIndex],
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: kToolbarHeight + MediaQuery.of(context).padding.top,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black.withOpacity(0.7), Colors.transparent],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
-            ),
-          ),
-        ]),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _navigateBottomBar,
-          type: BottomNavigationBarType.fixed,
-          unselectedLabelStyle: const TextStyle(color: Colors.white),
-          showUnselectedLabels: true,
-          unselectedItemColor: Colors.white,
-          unselectedFontSize: 14,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Iconsax.search_favorite), label: 'Search'),
-            BottomNavigationBarItem(
-              icon: Icon(Iconsax.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Iconsax.direct_inbox), label: 'Inbox')
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: GestureDetector(
+        onHorizontalDragEnd: (DragEndDetails details) {
+          if (details.primaryVelocity! > 0) {
+            // Swipe right
+            setState(() {
+              _selectedIndex = (_selectedIndex - 1).clamp(0, 2);
+              _pageController.previousPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            });
+          } else if (details.primaryVelocity! < 0) {
+            // Swipe left
+            setState(() {
+              _selectedIndex = (_selectedIndex + 1).clamp(0, 2);
+              _pageController.nextPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            });
+          }
+        },
+        child: PageView(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: const [
+            Search(),
+            Home(),
+            Inbox(),
           ],
-          backgroundColor: Colors.black,
-        ));
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _navigateBottomBar,
+        type: BottomNavigationBarType.fixed,
+        unselectedLabelStyle: const TextStyle(color: Colors.white),
+        showUnselectedLabels: true,
+        unselectedItemColor: Colors.white,
+        unselectedFontSize: 14,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.search_favorite),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.direct_inbox),
+            label: 'Inbox',
+          ),
+        ],
+        backgroundColor: Colors.black,
+      ),
+    );
   }
 }
