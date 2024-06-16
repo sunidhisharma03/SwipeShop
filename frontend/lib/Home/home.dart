@@ -3,7 +3,6 @@ import 'package:iconsax/iconsax.dart';
 import 'package:video_player/video_player.dart';
 import 'package:swipeshop_frontend/services/videoServices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
@@ -14,10 +13,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late VideoPlayerController _controller;
+  VideoPlayerController? _controller;
   bool _isInitialized = false;
   bool _isPlaying = true;
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
   List<Map<String, dynamic>> _videos = [];
 
@@ -40,18 +39,22 @@ class _HomeState extends State<Home> {
       if (videos.isNotEmpty) {
         setState(() {
           _videos = videos;
-          print(videos);
-          print(_videos);
-          print(_videos.length);
+          print(_currentIndex);
+          print(_videos[_currentIndex]['id']);
           print(_videos[_currentIndex]['url']);
           _initializeVideoPlayer(_videos[_currentIndex]['url']);
         });
       }
       else{
-        const CircularProgressIndicator();
+        setState(() {
+          _isInitialized = false;
+        });
       }
     } catch (e) {
       print("Error fetching videos: $e");
+      setState(() {
+        _isInitialized = false;
+      });
     }
   }
 
@@ -63,14 +66,15 @@ class _HomeState extends State<Home> {
   }
 
   void _initializeVideoPlayer(String videoPath) {
+    _controller?.dispose();
     _controller = VideoPlayerController.networkUrl(Uri.parse(videoPath))
       ..initialize().then((_) {
         setState(() {
           _isInitialized = true;
           _isPlaying = true;
         });
-        _controller.setLooping(true);
-        _controller.play();
+        _controller!.setLooping(true);
+        _controller!.play();
       }).catchError((error) {
         print("Error initializing video: $error");
       });
@@ -78,17 +82,17 @@ class _HomeState extends State<Home> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
   void _togglePlayPause() {
     setState(() {
-      if (_controller.value.isPlaying) {
-        _controller.pause();
+      if (_controller!.value.isPlaying) {
+        _controller!.pause();
         _isPlaying = false;
       } else {
-        _controller.play();
+        _controller!.play();
         _isPlaying = true;
       }
     });
@@ -111,13 +115,15 @@ class _HomeState extends State<Home> {
   }
 
   void _nextVideo() {
-    if (_currentIndex < _videos.length) {
+    if (_currentIndex < _videos.length-1) {
       setState(() {
         _currentIndex++;
-        _isInitialized = false;});
-        _controller.dispose();
+        _isInitialized = false;
+        });
+        print(_currentIndex);
+        print(_videos[_currentIndex]['id']);
+        print(_videos[_currentIndex]['url']);
         _initializeVideoPlayer(_videos[_currentIndex]['url']);
-      
     }
   }
 
@@ -125,10 +131,12 @@ class _HomeState extends State<Home> {
     if (_currentIndex > 0) {
       setState(() {
         _currentIndex--;
-        _isInitialized = false;});
-        _controller.dispose();
+        _isInitialized = false;
+        });
+        print(_currentIndex);
+        print(_videos[_currentIndex]['id']);
+        print(_videos[_currentIndex]['url']);
         _initializeVideoPlayer(_videos[_currentIndex]['url']);
-      
     }
   }
 
@@ -150,7 +158,7 @@ class _HomeState extends State<Home> {
                       key: ValueKey<int>(_currentIndex),
                       width: double.infinity,
                       height: double.infinity,
-                      child: VideoPlayer(_controller),
+                      child: VideoPlayer(_controller!),
                     )
                   : const Center(
                       child: CircularProgressIndicator(),
