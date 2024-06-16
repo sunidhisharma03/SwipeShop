@@ -14,7 +14,7 @@ class _AuthGateState extends State<AuthGate> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final Firebase _firebase = Firebase();
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
