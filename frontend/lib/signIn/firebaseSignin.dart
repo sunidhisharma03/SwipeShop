@@ -6,21 +6,19 @@ class Firebase {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<String?> register(String email, String password, String name) async {
-
-
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      final QuerySnapshot result = await FirebaseFirestore.instance
+      final QuerySnapshot result = await _firestore
           .collection('users')
           .where('email', isEqualTo: email)
           .get();
       final List<DocumentSnapshot> documents = result.docs;
       
       if (documents.isEmpty) {
-        await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+        await _firestore.collection('users').doc(userCredential.user!.uid).set({
           'email': email,
           'name': name,
         });
@@ -33,7 +31,7 @@ class Firebase {
 
   Future<String?> login(String email, String password) async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -42,15 +40,18 @@ class Firebase {
       return e.message; // Return error message if login fails
     }
   }
+
   Future<String?> logout() async {
     try {
       await _auth.signOut();
-      return'success'; // Logout successful, no error message
+      return 'success'; // Logout successful, no error message
     } on FirebaseAuthException catch (e) {
       return e.message; // Return error message if logout fails
     }
   }
+
   Future<String?> getCurrentUser() async {
-    return _auth.currentUser!.uid;
+    final user = _auth.currentUser;
+    return user?.uid; // Safely return user ID or null if not logged in
   }
 }

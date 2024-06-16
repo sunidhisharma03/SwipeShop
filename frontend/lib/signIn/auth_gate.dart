@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipeshop_frontend/signIn/firebaseSignin.dart';
 import 'package:swipeshop_frontend/signIn/register.dart';
+import 'package:swipeshop_frontend/Home/home.dart';
 
 class AuthGate extends StatefulWidget {
-  const AuthGate({Key? key}) : super(key: key);
+  const AuthGate({super.key});
 
   @override
   State<AuthGate> createState() => _AuthGateState();
@@ -19,22 +20,27 @@ class _AuthGateState extends State<AuthGate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-                  title: Text(
-                    "PROJECT BLUE SKY",
-                    style: GoogleFonts.poppins(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey.shade600),
-                  ),
-                  centerTitle: true,
-                  flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        gradient: RadialGradient(radius: 10, colors: [
-                      Colors.white,
-                      Color.fromRGBO(0, 156, 255, 1)
-                    ])),
-                  ),
-                ),
+        title: Text(
+          "SwipeShop",
+          style: GoogleFonts.poppins(
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey.shade600,
+          ),
+        ),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              radius: 10,
+              colors: [
+                Colors.white,
+                Color.fromRGBO(0, 156, 255, 1)
+              ],
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -45,7 +51,7 @@ class _AuthGateState extends State<AuthGate> {
               children: [
                 TextField(
                   controller: _emailController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(),
                   ),
@@ -54,7 +60,7 @@ class _AuthGateState extends State<AuthGate> {
                 TextField(
                   obscureText: true,
                   controller: _passwordController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Password',
                     border: OutlineInputBorder(),
                   ),
@@ -70,8 +76,13 @@ class _AuthGateState extends State<AuthGate> {
                           _passwordController.text.trim(),
                         );
                         if (result == 'success') {
-                          Navigator.pushNamed(context, '/');
+                          if (!mounted) return;
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const Home()),
+                          );
                         } else {
+                          if (!mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text(result ?? 'Login failed')),
                           );
@@ -85,7 +96,7 @@ class _AuthGateState extends State<AuthGate> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Register()),
+                          MaterialPageRoute(builder: (context) => const Register()),
                         );
                       },
                       child: const Text(

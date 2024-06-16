@@ -4,7 +4,7 @@ import 'package:swipeshop_frontend/signIn/auth_gate.dart';
 import 'package:swipeshop_frontend/signIn/firebaseSignin.dart';
 
 class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+  const Register({super.key});
 
   @override
   State<Register> createState() => _RegisterState();
@@ -20,22 +20,26 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-                  title: Text(
-                    "PROJECT BLUE SKY",
-                    style: GoogleFonts.poppins(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey.shade600),
-                  ),
-                  centerTitle: true,
-                  flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        gradient: RadialGradient(radius: 10, colors: [
-                      Colors.white,
-                      Color.fromRGBO(0, 156, 255, 1)
-                    ])),
-                  ),
-                ),
+        title: Text(
+          "PROJECT BLUE SKY",
+          style: GoogleFonts.poppins(
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
+            color: Colors.grey.shade600),
+        ),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              radius: 10,
+              colors: [
+                Colors.white,
+                Color.fromRGBO(0, 156, 255, 1)
+              ],
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -80,8 +84,10 @@ class _RegisterState extends State<Register> {
                           _nameController.text.trim(),
                         );
                         if (result == 'success') {
-                          Navigator.pushNamed(context, '/');
+                          if (!mounted) return;
+                          Navigator.pushReplacementNamed(context, '/');
                         } else {
+                          if (!mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text(result ?? 'Registration failed')),
                           );
@@ -90,7 +96,7 @@ class _RegisterState extends State<Register> {
                       child: const Text('Register'),
                     ),
                     const SizedBox(width: 20),
-                    const Text('Already logged in?'),
+                    const Text('Already registered?'),
                     TextButton(
                       onPressed: () {
                         Navigator.push(

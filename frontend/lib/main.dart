@@ -1,34 +1,91 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swipeshop_frontend/Home/home.dart';
 import 'package:swipeshop_frontend/Inbox/inbox.dart';
 import 'package:swipeshop_frontend/Search/search.dart';
-import 'package:swipeshop_frontend/test/test.dart';
+import 'package:swipeshop_frontend/userProfile/user_profile.dart';
+import 'package:swipeshop_frontend/signIn/auth_gate.dart';
 import 'firebase_options.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
-void main()async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
+    options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'SwipeShop',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const IndexPage(),
+      home: const AuthOrHome(),
+      routes: {
+        '/home': (context) => const Home(),
+        '/inbox': (context) => const Inbox(),
+        '/search': (context) => const Search(),
+        '/signIn': (context) => const AuthGate(),
+        '/user_profile': (context) => const UserProfilePage(),
+      },
     );
+  }
+}
+
+class AuthOrHome extends StatefulWidget {
+  const AuthOrHome({super.key});
+
+  @override
+  State<AuthOrHome> createState() => _AuthOrHomeState();
+}
+
+class _AuthOrHomeState extends State<AuthOrHome> {
+  bool _isLoading = true;
+  bool _isLoggedIn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      setState(() {
+        _isLoggedIn = true;
+      });
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else {
+      if (_isLoggedIn) {
+        return const Home();
+      } else {
+        return const AuthGate();
+      }
+    }
   }
 }
 
@@ -82,11 +139,21 @@ class _IndexPageState extends State<IndexPage> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(Iconsax.user),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const UserProfilePage()),
+              );
+            },
+          ),
+        ],
       ),
       body: GestureDetector(
         onHorizontalDragEnd: (DragEndDetails details) {
           if (details.primaryVelocity! > 0) {
-            // Swipe right
             setState(() {
               _selectedIndex = (_selectedIndex - 1).clamp(0, 2);
               _pageController.previousPage(
@@ -95,7 +162,6 @@ class _IndexPageState extends State<IndexPage> {
               );
             });
           } else if (details.primaryVelocity! < 0) {
-            // Swipe left
             setState(() {
               _selectedIndex = (_selectedIndex + 1).clamp(0, 2);
               _pageController.nextPage(
