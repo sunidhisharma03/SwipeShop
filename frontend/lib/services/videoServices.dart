@@ -71,7 +71,7 @@ Future<Map<String, List<Video>>> getUsersVideo(String userId) async {
     List<Video> challenge = [];
     for (var challengeDoc in challengeQuerySnapshot.docs) {
       var userDoc = await FirebaseFirestore.instance
-          .collection('users')
+          .collection('Users')
           .doc(userId)
           .get();
 
@@ -98,4 +98,5 @@ Future<Map<String, List<Video>>> getUsersVideo(String userId) async {
   }
 
 }
-  
+
+
