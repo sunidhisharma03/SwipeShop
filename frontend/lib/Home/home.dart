@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:video_player/video_player.dart';
+import 'package:swipeshop_frontend/services/videoServices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,20 +19,51 @@ class _HomeState extends State<Home> {
   bool _isPlaying = true;
   int _currentIndex = 0;
 
-  final List<String> _videos = [
-    'assets/videos/a.mp4',
-    'assets/videos/a.mp4',
-    'assets/videos/a.mp4',
-  ];
+  List<Map<String, dynamic>> _videos = [];
+
+  // final List<String> _videos = [
+  //   'assets/videos/a.mp4',
+  //   'assets/videos/a.mp4',
+  //   'assets/videos/a.mp4',
+  // ];
+
+  void _fetchVideos() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('Videos').get();
+      List<Map<String, dynamic>> videos = querySnapshot.docs.map((doc) {
+        return {
+          'id': doc.id,
+          'url': doc['url'],
+        };
+      }).toList();
+
+      if (videos.isNotEmpty) {
+        setState(() {
+          _videos = videos;
+          print(videos);
+          print(_videos);
+          print(_videos.length);
+          print(_videos[_currentIndex]['url']);
+          _initializeVideoPlayer(_videos[_currentIndex]['url']);
+        });
+      }
+      else{
+        const CircularProgressIndicator();
+      }
+    } catch (e) {
+      print("Error fetching videos: $e");
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    _initializeVideoPlayer(_videos[_currentIndex]);
+    _fetchVideos();
+    // _initializeVideoPlayer(_videos[_currentIndex]['url']);
   }
 
   void _initializeVideoPlayer(String videoPath) {
-    _controller = VideoPlayerController.asset(videoPath)
+    _controller = VideoPlayerController.networkUrl(Uri.parse(videoPath))
       ..initialize().then((_) {
         setState(() {
           _isInitialized = true;
@@ -76,13 +111,13 @@ class _HomeState extends State<Home> {
   }
 
   void _nextVideo() {
-    if (_currentIndex < _videos.length - 1) {
+    if (_currentIndex < _videos.length) {
       setState(() {
         _currentIndex++;
-        _isInitialized = false;
+        _isInitialized = false;});
         _controller.dispose();
-        _initializeVideoPlayer(_videos[_currentIndex]);
-      });
+        _initializeVideoPlayer(_videos[_currentIndex]['url']);
+      
     }
   }
 
@@ -90,10 +125,10 @@ class _HomeState extends State<Home> {
     if (_currentIndex > 0) {
       setState(() {
         _currentIndex--;
-        _isInitialized = false;
+        _isInitialized = false;});
         _controller.dispose();
-        _initializeVideoPlayer(_videos[_currentIndex]);
-      });
+        _initializeVideoPlayer(_videos[_currentIndex]['url']);
+      
     }
   }
 
@@ -157,7 +192,8 @@ class _HomeState extends State<Home> {
                       size: 35,
                     ),
                     onPressed: () {
-                      // Handle like button press
+                      var userId = FirebaseAuth.instance.currentUser!.uid;
+                      likeVideo(_videos[_currentIndex]['id'], userId);
                     },
                   ),
                   const SizedBox(height: 12),
