@@ -5,6 +5,7 @@ import 'package:swipeshop_frontend/signIn/firebase_signin.dart';
 import 'package:swipeshop_frontend/vidUpload/vidUpload.dart';
 import 'package:firebase_core/firebase_core.dart' as fb;
 import 'package:swipeshop_frontend/firebase_options.dart';
+import 'package:swipeshop_frontend/main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

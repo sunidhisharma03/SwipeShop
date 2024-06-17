@@ -71,7 +71,7 @@ Future<Map<String, List<Video>>> getUsersVideo(String userId) async {
     List<Video> challenge = [];
     for (var challengeDoc in challengeQuerySnapshot.docs) {
       var userDoc = await FirebaseFirestore.instance
-          .collection('users')
+          .collection('Users')
           .doc(userId)
           .get();
 
@@ -98,4 +98,45 @@ Future<Map<String, List<Video>>> getUsersVideo(String userId) async {
   }
 
 }
-  
+
+Future<void> likeVideo(String videoId,String userId)async{
+  try {
+    // Get a reference to the video document
+    var videoDocRef = await FirebaseFirestore.instance.collection('Videos').doc(videoId);
+
+    // Start a Firestore transaction
+    await FirebaseFirestore.instance.runTransaction((transaction) async {
+      // Get the current video document
+      var videoDoc = await transaction.get(videoDocRef);
+
+      if (!videoDoc.exists) {
+        throw Exception("Video does not exist");
+      }
+
+      // Increment the like count
+      var newLikeCount = (videoDoc['likeCount'] as int) + 1;
+
+      // Update the like count in the Videos collection
+      transaction.update(videoDocRef, {'likeCount': newLikeCount});
+
+      // Add an entry to the Likes schema
+      var likeDocRef = FirebaseFirestore.instance.collection('Likes').doc();
+      transaction.set(likeDocRef, {
+        'videoID': videoId,
+        'userID': userId,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+
+      // Add the video to the user's likedVideos array
+      var userDocRef = FirebaseFirestore.instance.collection('Users').doc(userId);
+      transaction.update(userDocRef, {
+        'likedVideos': FieldValue.arrayUnion([videoId])
+      });
+    });
+
+    print('Video liked successfully');
+  } catch (error) {
+    print('Error liking video: $error');
+  }
+}
+

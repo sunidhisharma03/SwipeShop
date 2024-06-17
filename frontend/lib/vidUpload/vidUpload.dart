@@ -2,6 +2,7 @@ import 'dart:io';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipeshop_frontend/signIn/firebase_signIn.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,6 +10,7 @@ import 'package:swipeshop_frontend/modal/video.dart';
 import 'package:swipeshop_frontend/services/videoServices.dart';
 import 'package:firebase_core/firebase_core.dart' as fb;
 import 'package:swipeshop_frontend/firebase_options.dart';
+import 'package:video_player/video_player.dart';
 
 
 void main() async {
@@ -43,10 +45,27 @@ class _VideoInputState extends State<VideoInput> {
   final _titleController = TextEditingController();
   final _desController = TextEditingController();
   final ImagePicker _imagePicker = ImagePicker();
+  VideoPlayerController? _controller;
   XFile? _image;
   String videoUrl = "";
+  String videLocal ="";
 
   final Firebase _firebase = Firebase();
+
+  @override
+  void dispose() {
+    _controller!.dispose();
+    super.dispose();
+  }
+
+  void _initializeVideoPlayer(){
+  _controller = VideoPlayerController.file(File(videLocal))..initialize().then((_) {
+    setState(() {
+    });
+    _controller!.play();
+  });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -114,7 +133,7 @@ class _VideoInputState extends State<VideoInput> {
                 child: const Text("The Video"),
               ),
             ),
-            _buildImagePreview(),
+            _videoPreview(),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: ElevatedButton(
@@ -163,7 +182,6 @@ class _VideoInputState extends State<VideoInput> {
                       ),
                       
                     );
-
                     Navigator.pop(context); // Close the modal after successful submission
                   } catch (error) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -184,12 +202,27 @@ class _VideoInputState extends State<VideoInput> {
 
   void selectImages() async {
     final XFile? selectedImages =
-        await _imagePicker.pickImage(source: ImageSource.camera);
+        await _imagePicker.pickVideo(source: ImageSource.gallery);
 
     if (selectedImages != null) {
       setState(() {
         _image = selectedImages;
+        videLocal = selectedImages.path;
+        _initializeVideoPlayer();
       });
+    }
+  }
+  
+
+  Widget _videoPreview(){
+    if(_controller != null){
+      return AspectRatio(
+        aspectRatio: _controller!.value.aspectRatio,
+        child: VideoPlayer(_controller!),
+        );
+    }
+    else{
+      return const CircularProgressIndicator();
     }
   }
 
@@ -206,3 +239,4 @@ class _VideoInputState extends State<VideoInput> {
           );
   }
 }
+

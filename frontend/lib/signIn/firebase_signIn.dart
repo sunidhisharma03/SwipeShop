@@ -16,10 +16,14 @@ class Firebase {
           .where('email', isEqualTo: email)
           .get();
       final List<DocumentSnapshot> documents = result.docs;
+      var lVids = [];
+      var sVids = [];
       if (documents.isEmpty) {
         await FirebaseFirestore.instance.collection('Users').doc(userCredential.user!.uid).set({
           'email': email,
           'name': name,
+          'likedVideos': lVids,
+          'sharedVideos': sVids,
         });
       }
       return 'success'; // Registration successful, no error message
