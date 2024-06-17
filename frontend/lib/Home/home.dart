@@ -107,7 +107,7 @@ class _HomeState extends State<Home> {
         child: Stack(
           children: [
             AnimatedSwitcher(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               switchInCurve: Curves.easeInOut,
               switchOutCurve: Curves.easeInOut,
               child: _isInitialized
@@ -115,7 +115,11 @@ class _HomeState extends State<Home> {
                       key: ValueKey<int>(_currentIndex),
                       width: double.infinity,
                       height: double.infinity,
-                      child: VideoPlayer(_controller),
+                      alignment: Alignment.center,
+                      child: AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(_controller),
+                      ),
                     )
                   : const Center(
                       child: CircularProgressIndicator(),
@@ -186,7 +190,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             if (!_isPlaying && _isInitialized)
-              Center(
+              const Center(
                 child: Icon(
                   Icons.play_arrow,
                   color: Colors.white,
@@ -201,5 +205,5 @@ class _HomeState extends State<Home> {
 }
 
 void main() {
-  runApp(MaterialApp(home: Home()));
+  runApp(const MaterialApp(home: Home()));
 }
