@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:video_player/video_player.dart';
+import 'package:swipeshop_frontend/services/videoServices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,32 +13,68 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late VideoPlayerController _controller;
+  VideoPlayerController? _controller;
   bool _isInitialized = false;
   bool _isPlaying = true;
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
-  final List<String> _videos = [
-    'assets/videos/a.mp4',
-    'assets/videos/a.mp4',
-    'assets/videos/a.mp4',
-  ];
+  List<Map<String, dynamic>> _videos = [];
+
+  // final List<String> _videos = [
+  //   'assets/videos/a.mp4',
+  //   'assets/videos/a.mp4',
+  //   'assets/videos/a.mp4',
+  // ];
+
+  void _fetchVideos() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('Videos').get();
+      List<Map<String, dynamic>> videos = querySnapshot.docs.map((doc) {
+        return {
+          'id': doc.id,
+          'url': doc['url'],
+        };
+      }).toList();
+
+      if (videos.isNotEmpty) {
+        setState(() {
+          _videos = videos;
+          print(_currentIndex);
+          print(_videos[_currentIndex]['id']);
+          print(_videos[_currentIndex]['url']);
+          _initializeVideoPlayer(_videos[_currentIndex]['url']);
+        });
+      }
+      else{
+        setState(() {
+          _isInitialized = false;
+        });
+      }
+    } catch (e) {
+      print("Error fetching videos: $e");
+      setState(() {
+        _isInitialized = false;
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    _initializeVideoPlayer(_videos[_currentIndex]);
+    _fetchVideos();
+    // _initializeVideoPlayer(_videos[_currentIndex]['url']);
   }
 
   void _initializeVideoPlayer(String videoPath) {
-    _controller = VideoPlayerController.asset(videoPath)
+    _controller?.dispose();
+    _controller = VideoPlayerController.networkUrl(Uri.parse(videoPath))
       ..initialize().then((_) {
         setState(() {
           _isInitialized = true;
           _isPlaying = true;
         });
-        _controller.setLooping(true);
-        _controller.play();
+        _controller!.setLooping(true);
+        _controller!.play();
       }).catchError((error) {
         print("Error initializing video: $error");
       });
@@ -43,17 +82,17 @@ class _HomeState extends State<Home> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
   void _togglePlayPause() {
     setState(() {
-      if (_controller.value.isPlaying) {
-        _controller.pause();
+      if (_controller!.value.isPlaying) {
+        _controller!.pause();
         _isPlaying = false;
       } else {
-        _controller.play();
+        _controller!.play();
         _isPlaying = true;
       }
     });
@@ -76,13 +115,15 @@ class _HomeState extends State<Home> {
   }
 
   void _nextVideo() {
-    if (_currentIndex < _videos.length - 1) {
+    if (_currentIndex < _videos.length-1) {
       setState(() {
         _currentIndex++;
         _isInitialized = false;
-        _controller.dispose();
-        _initializeVideoPlayer(_videos[_currentIndex]);
-      });
+        });
+        print(_currentIndex);
+        print(_videos[_currentIndex]['id']);
+        print(_videos[_currentIndex]['url']);
+        _initializeVideoPlayer(_videos[_currentIndex]['url']);
     }
   }
 
@@ -91,9 +132,11 @@ class _HomeState extends State<Home> {
       setState(() {
         _currentIndex--;
         _isInitialized = false;
-        _controller.dispose();
-        _initializeVideoPlayer(_videos[_currentIndex]);
-      });
+        });
+        print(_currentIndex);
+        print(_videos[_currentIndex]['id']);
+        print(_videos[_currentIndex]['url']);
+        _initializeVideoPlayer(_videos[_currentIndex]['url']);
     }
   }
 
@@ -115,11 +158,7 @@ class _HomeState extends State<Home> {
                       key: ValueKey<int>(_currentIndex),
                       width: double.infinity,
                       height: double.infinity,
-                      alignment: Alignment.center,
-                      child: AspectRatio(
-                        aspectRatio: _controller.value.aspectRatio,
-                        child: VideoPlayer(_controller),
-                      ),
+                      child: VideoPlayer(_controller!),
                     )
                   : const Center(
                       child: CircularProgressIndicator(),
@@ -161,7 +200,8 @@ class _HomeState extends State<Home> {
                       size: 35,
                     ),
                     onPressed: () {
-                      // Handle like button press
+                      var userId = FirebaseAuth.instance.currentUser!.uid;
+                      likeVideo(_videos[_currentIndex]['id'], userId);
                     },
                   ),
                   const SizedBox(height: 12),
