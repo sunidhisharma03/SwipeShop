@@ -79,7 +79,9 @@ class VideoListScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: videos.length,
               itemBuilder: (context, index) {
-                return VideoPlayerItem(videoUrl: videos[index]['url'], videoID: videos[index]['id']);
+                return VideoPlayerItem(
+                    videoUrl: videos[index]['url'],
+                    videoID: videos[index]['id']);
               },
             );
           },
@@ -93,7 +95,8 @@ class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
   final String videoID;
 
-  VideoPlayerItem({Key? key, required this.videoUrl, required this.videoID}) : super(key: key);
+  VideoPlayerItem({Key? key, required this.videoUrl, required this.videoID})
+      : super(key: key);
 
   @override
   _VideoPlayerItemState createState() => _VideoPlayerItemState();
@@ -144,7 +147,6 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Stack(fit: StackFit.expand, children: [
@@ -176,7 +178,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
             ),
             const SizedBox(height: 12),
             IconButton(
-              icon:  Icon(
+              icon: Icon(
                 Iconsax.heart,
                 color: isLiked ? Color.fromRGBO(222, 12, 82, 1) : Colors.white,
                 size: 35,
@@ -201,7 +203,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                   builder: (BuildContext context) {
                     return Container(
                       height: MediaQuery.of(context).size.height * 0.8,
-                      child: const Comments(),
+                      child: Comments(),
                       color: Colors.black.withOpacity(0.5),
                     );
                   },

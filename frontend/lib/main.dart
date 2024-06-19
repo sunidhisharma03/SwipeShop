@@ -25,8 +25,6 @@ void main() async {
     // '/forum': (context) => const Forum(),
     '/signIn': (context) => AuthGate(),
     // '/user_profile': (context) => UserProfilePage()
-    '/profile': (context) => Profile(
-        name: "John Doe", profilePictureUrl: "aa", location: "kathmandu")
   }));
 }
 
@@ -97,16 +95,8 @@ class _IndexPageState extends State<IndexPage> {
   }
 
   void _navigateToProfile() {
-    Navigator.pushNamed(
-      context,
-      '/profile', // Route name for Profile screen
-      arguments: {
-        'name': 'John Doe',
-        'profilePictureUrl':
-            'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
-        'location': 'New York, NY',
-      },
-    );
+    Navigator.pushNamed(context, '/profile' // Route name for Profile screen
+        );
   }
 
   @override
@@ -128,7 +118,12 @@ class _IndexPageState extends State<IndexPage> {
         leading: IconButton(
           icon: Icon(Icons.person), // Replace with your profile icon
           onPressed: () {
-            _navigateToProfile;
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          isMerchant: true,
+                        )));
             // Handle profile icon press (e.g., navigate to profile screen)
           },
         ),
