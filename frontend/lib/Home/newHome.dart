@@ -4,6 +4,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:swipeshop_frontend/Comments/newComment.dart';
+import 'package:swipeshop_frontend/Inbox/chat.dart';
 import 'package:video_player/video_player.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:swipeshop_frontend/firebase_options.dart';
@@ -109,6 +110,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   bool isLiked = false;
   var title = '';
   var description = '';
+  var creatorId = '';
+  var userId = '';
 
   @override
   void initState() {
@@ -148,6 +151,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
 
     setState(() {
       isLiked = likeQuerySnapshot.docs.isNotEmpty;
+      userId = userId;
     });
   }
 
@@ -164,11 +168,13 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
         setState(() {
           title = videoSnapshot['title'];
           description = videoSnapshot['description'];
+          creatorId = videoSnapshot['ownerID'];
         });
 
         // Use title and description as needed
         print('Title: $title');
         print('Description: $description');
+        print('Creator ID: $creatorId');
       } else {
         // Handle case where document does not exist
         print('Document with ID ${widget.videoID} does not exist');
@@ -201,7 +207,15 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Chat(
+                              sellerId: creatorId,
+                              userId: userId,
+                            )));
+              },
               icon: const Icon(
                 Iconsax.message_circle,
                 size: 35,

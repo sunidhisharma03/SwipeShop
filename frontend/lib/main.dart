@@ -106,7 +106,6 @@ class _IndexPageState extends State<IndexPage> {
       setState(() {
         currentUser = current;
         print(currentUser.name);
-        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       });
   }
 
@@ -166,7 +165,7 @@ class _IndexPageState extends State<IndexPage> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Search(),
-            // Home(),
+            
             VideoListScreen(),
             Inbox(),
           ],
