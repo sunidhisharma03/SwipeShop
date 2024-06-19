@@ -275,3 +275,19 @@ Future<Users> getUser(String userId) async {
     return Users(email: '', likedVideos: [], name: '', url: '', isMerchant: false);
   }
 }
+
+Future<void> sendChat(String senderId,String receiverId,String content) async{
+  try {
+    await FirebaseFirestore.instance.collection('Chats').add({
+        'senderId': senderId,
+        'receiverId': receiverId,
+        'content': content,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      print('Chat uploaded successfully');
+  } catch (error) {
+    print('Error liking video: $error');
+  }
+}
+
+

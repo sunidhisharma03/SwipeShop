@@ -127,15 +127,15 @@ class Profile extends StatelessWidget {
                 ),
                 Container(
                     child: ElevatedButton(
-                  onPressed: () {
-                    var check = _signOut();
+                  onPressed: () async {
+                    var check = await _signOut();
                     if (check == 'success') {
-                      // Navigator.pushNamed(context, '/wrapper');
-                      Navigator.push(
-                    context,
-                      MaterialPageRoute(
-                        builder: (context) => AuthWrapper(
-                        )));
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AuthWrapper()),
+                        (Route<dynamic> route) => false,
+                      );
                     } else {
                       print(check);
                     }
