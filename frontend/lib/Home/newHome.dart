@@ -27,6 +27,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class newHome extends StatefulWidget {
+  const newHome({super.key});
+
+  @override
+  State<newHome> createState() => _newHomeState();
+}
+
+class _newHomeState extends State<newHome> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
 class VideoListScreen extends StatelessWidget {
   final CollectionReference videosCollection =
       FirebaseFirestore.instance.collection('Videos');
@@ -34,9 +48,6 @@ class VideoListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('TikTok Clone'),
-      ),
       body: StreamBuilder(
         stream: videosCollection.snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -65,7 +76,7 @@ class VideoListScreen extends StatelessWidget {
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
 
-  const VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
+  VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
 
   @override
   _VideoPlayerItemState createState() => _VideoPlayerItemState();
@@ -85,7 +96,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
           videoPlayerController: _videoPlayerController,
           autoPlay: true,
           looping: true,
-          // customControls: CustomControls(),
+          customControls: CustomChewieControls(),
         );
       });
     });
@@ -100,8 +111,16 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
 
   @override
   Widget build(BuildContext context) {
-    return _chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
+    return GestureDetector(
+        onTap: () {
+        setState(() {
+          _videoPlayerController.value.isPlaying
+              ? _videoPlayerController.pause()
+              : _videoPlayerController.play();
+        });
+      },
+        child:_chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
         ? Chewie(controller: _chewieController!)
-        : Center(child: CircularProgressIndicator());
+        : Center(child: CircularProgressIndicator()));
   }
 }
