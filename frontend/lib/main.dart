@@ -61,7 +61,6 @@ class MyApp extends StatelessWidget {
 
 class IndexPage extends StatefulWidget {
   const IndexPage({Key? key});
-  
 
   @override
   State<IndexPage> createState() => _IndexPageState();
@@ -70,7 +69,7 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   int _selectedIndex = 1;
   late PageController _pageController;
-  late final Users currentUser;
+  Users? currentUser;
 
   @override
   void initState() {
@@ -97,12 +96,12 @@ class _IndexPageState extends State<IndexPage> {
   }
 
   Future<void> _getUserDetails() async {
-      var userId = FirebaseAuth.instance.currentUser!.uid;
-      Users current;
-      current = await getUser(userId);
-      setState(() {
-        currentUser = current;
-      });
+    var userId = FirebaseAuth.instance.currentUser!.uid;
+    Users current;
+    current = await getUser(userId);
+    setState(() {
+      currentUser = current;
+    });
   }
 
   @override
@@ -124,13 +123,19 @@ class _IndexPageState extends State<IndexPage> {
         leading: IconButton(
           icon: Icon(Icons.person), // Replace with your profile icon
           onPressed: () {
-            Navigator.push(
+            if (currentUser != null) {
+              Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Profile(
-                          current: currentUser,
-                        )));
-            // Handle profile icon press (e.g., navigate to profile screen)
+                  builder: (context) => Profile(current: currentUser!),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("User data is loading. Please wait and Try Again.")),
+              );
+              _getUserDetails();
+            }
           },
         ),
       ),
@@ -161,7 +166,6 @@ class _IndexPageState extends State<IndexPage> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Search(),
-            
             VideoListScreen(),
             Inbox(),
           ],
