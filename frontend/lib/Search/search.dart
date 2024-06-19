@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 
 class Search extends StatefulWidget {
@@ -9,6 +11,8 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  String _searchQuery = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +56,11 @@ class _SearchState extends State<Search> {
               child: Column(
                 children: [
                   TextField(
+                    onChanged: (value){
+                      setState(() {
+                        _searchQuery = value;
+                      });
+                    },
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -62,13 +71,55 @@ class _SearchState extends State<Search> {
                       prefixIcon: Icon(Iconsax.search_normal),
                     ),
                   ),
-                  ElevatedButton(onPressed: () {}, child: Text('Search')),
+                  ElevatedButton(onPressed: () {
+                    
+                  }, child: Text('Search')),
+                  
                 ],
               ),
             ),
           ),
         ),
+        Center(
+          child: Container(decoration: BoxDecoration(color: Colors.white),
+            child:  _buildSearchResults(context),),
+        )
+       
       ],
     ));
   }
+
+  Widget _buildSearchResults(BuildContext context) {
+  return StreamBuilder<QuerySnapshot>(
+    stream: FirebaseFirestore.instance
+        .collection('Videos')
+        .where('title', isGreaterThanOrEqualTo: _searchQuery)
+        .where('category', isGreaterThanOrEqualTo: _searchQuery)
+        .where('title', isLessThan: _searchQuery + '\uf8ff')
+        .where('category', isLessThan: _searchQuery + '\uf8ff')
+        .snapshots(),
+    builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return Center(child: CircularProgressIndicator());
+      }
+
+      var results = snapshot.data!.docs;
+
+      return ListView.builder(
+        shrinkWrap: true,
+        itemCount: results.length,
+        itemBuilder: (context, index) {
+          // Build your list item UI here
+          var document = results[index];
+          return ListTile(
+            title: Text(document['title']),
+            subtitle: Text(document['description']),
+            // Add more UI elements as needed
+          );
+        },
+      );
+    },
+  );
+}
+
 }
