@@ -102,10 +102,6 @@ class _IndexPageState extends State<IndexPage> {
       current = await getUser(userId);
       setState(() {
         currentUser = current;
-<<<<<<< HEAD
-        print(currentUser.name);
-=======
->>>>>>> ea4efaba153f96d480183201c487bee233893f39
       });
   }
 
