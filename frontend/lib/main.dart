@@ -161,7 +161,7 @@ class _IndexPageState extends State<IndexPage> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Search(),
-            // Home(),
+            
             VideoListScreen(),
             Inbox(),
           ],
