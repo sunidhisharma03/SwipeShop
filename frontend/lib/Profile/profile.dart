@@ -7,7 +7,7 @@ import 'package:swipeshop_frontend/signIn/firebase_signIn.dart';
 class Profile extends StatelessWidget {
   final Users current;
   const Profile({Key? key, required this.current}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     final Firebase _firebase = Firebase();
@@ -49,7 +49,10 @@ class Profile extends StatelessWidget {
               current.isMerchant ? SizedBox(height: 80) : SizedBox(height: 0),
               CircleAvatar(
                 radius: 50,
-                backgroundImage: current.url.isNotEmpty? NetworkImage(current.url): NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH4skylfJs-mOf6lz4pGDuTMvX6zqPc4LppQ&s'),
+                backgroundImage: current.url.isNotEmpty
+                    ? NetworkImage(current.url)
+                    : NetworkImage(
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH4skylfJs-mOf6lz4pGDuTMvX6zqPc4LppQ&s'),
               ),
               SizedBox(height: 20),
               Text(
@@ -84,23 +87,22 @@ class Profile extends StatelessWidget {
                             );
                           },
                           child: Text("Statistics"))),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                      child: ElevatedButton(
-                    onPressed: () {
-                      var check = _firebase.logout();
-                      if(check == 'success'){
-                        Navigator.pushNamed(context, '/wrapper');
-                      }
-                      else{
-                        print(check);
-                      }
-                    },
-                    child: Text("Logout"),
-                  )),
                 ],
+                SizedBox(
+                  width: 10,
+                ),
+                Container(
+                    child: ElevatedButton(
+                  onPressed: () {
+                    var check = _firebase.logout();
+                    if (check == 'success') {
+                      Navigator.pushNamed(context, '/wrapper');
+                    } else {
+                      print(check);
+                    }
+                  },
+                  child: Text("Logout"),
+                )),
               ]),
               if (current.isMerchant) ...[
                 SizedBox(height: 20),
