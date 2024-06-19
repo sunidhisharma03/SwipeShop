@@ -128,22 +128,22 @@ class _RegisterState extends State<Register> {
                         style: TextStyle(color: Colors.blue),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const MaterialApp(
-                                                                          home: Scaffold(
-                                                                            body: VideoInput(),
-                                                                            ) ,
-                                                                            )),
-                        );
-                      },
-                      child: const Text(
-                        'VideoInput',
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () {
+                    //     Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(builder: (context) => const MaterialApp(
+                    //                                                       home: Scaffold(
+                    //                                                         body: VideoInput(),
+                    //                                                         ) ,
+                    //                                                         )),
+                    //     );
+                    //   },
+                    //   child: const Text(
+                    //     'VideoInput',
+                    //     style: TextStyle(color: Colors.blue),
+                    //   ),
+                    // ),
                   ],
                 ),
               ],

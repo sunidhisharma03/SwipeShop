@@ -2,15 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipeshop_frontend/Profile/merchantStatistics.dart';
 import 'package:swipeshop_frontend/modal/user.dart';
+import 'package:swipeshop_frontend/signIn/authwrapper.dart';
 import 'package:swipeshop_frontend/signIn/firebase_signIn.dart';
+import 'package:swipeshop_frontend/vidUpload/vidUpload.dart';
+
 
 class Profile extends StatelessWidget {
   final Users current;
+  // final Firebase _firebase = Firebase();
   const Profile({Key? key, required this.current}) : super(key: key);
+
+  Future<String?> _signOut() async{
+    final Firebase _firebase = Firebase();
+    String? check;
+    check = await _firebase.logout();
+    return check;
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    final Firebase _firebase = Firebase();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -87,6 +98,22 @@ class Profile extends StatelessWidget {
                             );
                           },
                           child: Text("Statistics"))),
+                          TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const MaterialApp(
+                                                                          home: Scaffold(
+                                                                            body: VideoInput(),
+                                                                            ) ,
+                                                                            )),
+                        );
+                      },
+                      child: const Text(
+                        'VideoInput',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
                 ],
                 SizedBox(
                   width: 10,
@@ -94,9 +121,14 @@ class Profile extends StatelessWidget {
                 Container(
                     child: ElevatedButton(
                   onPressed: () {
-                    var check = _firebase.logout();
+                    var check = _signOut();
                     if (check == 'success') {
-                      Navigator.pushNamed(context, '/wrapper');
+                      // Navigator.pushNamed(context, '/wrapper');
+                      Navigator.push(
+                    context,
+                      MaterialPageRoute(
+                        builder: (context) => AuthWrapper(
+                        )));
                     } else {
                       print(check);
                     }
