@@ -10,26 +10,62 @@ class CustomChewieControls extends StatefulWidget {
 }
 
 class _CustomChewieControlsState extends State<CustomChewieControls> {
-  bool _isMuted = false;
+  ChewieController? _chewieController;
+  bool _showControls = true; // Track if controls should be shown or hidden
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Listen to ChewieController changes
+    _chewieController = ChewieController.of(context);
+    _chewieController?.addListener(_updateState);
+  }
+
+  @override
+  void dispose() {
+    _chewieController?.removeListener(_updateState);
+    super.dispose();
+  }
+
+  void _updateState() {
+    // Update local state based on ChewieController state
+    if (_chewieController?.videoPlayerController.value.isPlaying ?? false) {
+      _showControls = false; // Hide controls when video is playing
+    } else {
+      _showControls = true; // Show controls when video is paused
+    }
+    setState(() {}); // Trigger a rebuild
+  }
 
   @override
   Widget build(BuildContext context) {
-    final ChewieController chewieController = ChewieController.of(context);
-    final VideoPlayerController videoPlayerController = chewieController.videoPlayerController;
+    final chewieController = _chewieController!;
+    final videoPlayerController = chewieController.videoPlayerController;
 
     return GestureDetector(
       onTap: () {
         setState(() {
-          videoPlayerController.value.isPlaying
-              ? videoPlayerController.pause()
-              : videoPlayerController.play();
+          if (_showControls) {
+            if (videoPlayerController.value.isPlaying) {
+              videoPlayerController.pause();
+            } else {
+              videoPlayerController.play();
+            }
+          } else {
+            _showControls = true; // Show controls when tapped while video is playing
+          }
         });
       },
       child: Stack(
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.center,
         children: <Widget>[
-          _buildPlayPause(videoPlayerController),
-          // _buildBottomBar(context, chewieController),
+          AspectRatio(
+            aspectRatio: videoPlayerController.value.aspectRatio,
+            child: VideoPlayer(videoPlayerController),
+          ),
+          if (_showControls) ...[
+            // _buildPlayPause(videoPlayerController),
+          ],
         ],
       ),
     );
@@ -38,7 +74,7 @@ class _CustomChewieControlsState extends State<CustomChewieControls> {
   Widget _buildPlayPause(VideoPlayerController videoPlayerController) {
     return Center(
       child: AnimatedOpacity(
-        opacity: videoPlayerController.value.isPlaying ? 0.0 : 0.5,
+        opacity: _showControls ? 1.0 : 0.0,
         duration: const Duration(milliseconds: 300),
         child: IconButton(
           iconSize: 60.0,
@@ -48,49 +84,15 @@ class _CustomChewieControlsState extends State<CustomChewieControls> {
           ),
           onPressed: () {
             setState(() {
-              videoPlayerController.value.isPlaying
-                  ? videoPlayerController.pause()
-                  : videoPlayerController.play();
+              if (videoPlayerController.value.isPlaying) {
+                videoPlayerController.pause();
+              } else {
+                videoPlayerController.play();
+              }
             });
           },
         ),
       ),
-    );
-  }
-
-  Widget _buildBottomBar(BuildContext context, ChewieController chewieController) {
-    final videoPlayerController = chewieController.videoPlayerController;
-    final position = videoPlayerController.value.position;
-
-    return Container(
-      color: Colors.black54,
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Text(
-            '${position.inMinutes}:${(position.inSeconds % 60).toString().padLeft(2, '0')}',
-            style: TextStyle(color: Colors.white),
-          ),
-          SizedBox(width: 10),
-          _buildMuteButton(videoPlayerController),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMuteButton(VideoPlayerController videoPlayerController) {
-    return IconButton(
-      icon: Icon(
-        _isMuted ? Icons.volume_off : Icons.volume_up,
-        color: Colors.white,
-      ),
-      onPressed: () {
-        setState(() {
-          _isMuted = !_isMuted;
-          videoPlayerController.setVolume(_isMuted ? 0.0 : 1.0);
-        });
-      },
     );
   }
 }

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TikTok Clone',
+      title: 'SwipeShop',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
