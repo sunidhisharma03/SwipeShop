@@ -1,5 +1,6 @@
 // import 'dart:js';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,11 +9,11 @@ import 'package:swipeshop_frontend/Home/home.dart';
 import 'package:swipeshop_frontend/Inbox/inbox.dart';
 import 'package:swipeshop_frontend/Profile/profile.dart';
 import 'package:swipeshop_frontend/Search/search.dart';
-import 'package:swipeshop_frontend/test/test.dart';
 import 'firebase_options.dart';
 import 'package:swipeshop_frontend/Home/newHome.dart';
 import 'package:swipeshop_frontend/signIn/authgate.dart';
 import 'package:swipeshop_frontend/signIn/authwrapper.dart';
+import 'package:swipeshop_frontend/modal/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -97,6 +98,8 @@ class _IndexPageState extends State<IndexPage> {
   }
 
   void _navigateToProfile() {
+    var userId = FirebaseAuth.instance.currentUser!.uid;
+    
     Navigator.pushNamed(
       context,
       '/profile', // Route name for Profile screen

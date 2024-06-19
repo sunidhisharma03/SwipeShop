@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swipeshop_frontend/modal/video.dart';
 import 'package:swipeshop_frontend/modal/comments.dart';
+import 'package:swipeshop_frontend/modal/user.dart';
 
 Future<void> addToFirestore(Video video) async {
   try {
@@ -237,6 +238,7 @@ Future<String> getUserName(String userId) async {
       .get();
       if (userQuerySnapshot.exists) {
       return userQuerySnapshot.data()?['name'];
+
     } else {
       print('User document does not exist');
       return 'null';
@@ -244,5 +246,28 @@ Future<String> getUserName(String userId) async {
   } catch(e){
     print('Error fetching comments: $e');
     return 'Null';
+  }
+}
+
+Future<Users?> getUser(String userId) async {
+  try{
+      var userQuerySnapshot = await FirebaseFirestore.instance
+      .collection('Users')
+      .doc(userId)
+      .get();
+      if (userQuerySnapshot.exists) {
+      return Users(
+        email: userQuerySnapshot.data()?['email'],
+        name: userQuerySnapshot.data()?['name'],
+        url: userQuerySnapshot.data()?['url'],
+        likedVideos: userQuerySnapshot.data()?['likedVideos'],
+      );
+    } else {
+      print('User document does not exist');
+      return null;
+      }
+  } catch(e){
+    print('Error fetching comments: $e');
+    return null;
   }
 }
