@@ -27,6 +27,7 @@ class _AuthGateState extends State<AuthGate> {
                         color: Colors.grey.shade600),
                   ),
                   centerTitle: true,
+                  automaticallyImplyLeading: false,
                   flexibleSpace: Container(
                     decoration: const BoxDecoration(
                         gradient: RadialGradient(radius: 10, colors: [
