@@ -35,15 +35,6 @@ class _InboxState extends State<Inbox> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Inbox",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
                     itemCount: 10, // Placeholder count for items
