@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chewie/chewie.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:swipeshop_frontend/Comments/comment.dart';
+import 'package:swipeshop_frontend/Comments/newComment.dart';
 import 'package:video_player/video_player.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:swipeshop_frontend/firebase_options.dart';
@@ -201,7 +201,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                   builder: (BuildContext context) {
                     return Container(
                       height: MediaQuery.of(context).size.height * 0.8,
-                      child: const Comments(),
+                      child: Comments(videoId:widget.videoID),
                       color: Colors.black.withOpacity(0.5),
                     );
                   },
