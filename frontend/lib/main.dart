@@ -9,11 +9,9 @@ import 'package:swipeshop_frontend/test/test.dart';
 import 'firebase_options.dart';
 import 'package:swipeshop_frontend/Home/newHome.dart';
 
-void main()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
