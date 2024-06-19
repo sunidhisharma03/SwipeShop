@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chewie/chewie.dart';
+import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:swipeshop_frontend/Comments/newComment.dart';
 import 'package:video_player/video_player.dart';
@@ -106,6 +107,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   late VideoPlayerController _videoPlayerController;
   ChewieController? _chewieController;
   bool isLiked = false;
+  var title = '';
+  var description = '';
 
   @override
   void initState() {
@@ -125,6 +128,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
       });
     });
     _checkIfLiked();
+    _captions();
   }
 
   @override
@@ -145,6 +149,34 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     setState(() {
       isLiked = likeQuerySnapshot.docs.isNotEmpty;
     });
+  }
+
+  Future<void> _captions() async {
+    try {
+      // Fetch video data from Firestore
+      var videoSnapshot = await FirebaseFirestore.instance
+          .collection('Videos')
+          .doc(widget.videoID)
+          .get();
+
+      if (videoSnapshot.exists) {
+        // Check if the document exists
+        setState(() {
+          title = videoSnapshot['title'];
+          description = videoSnapshot['description'];
+        });
+
+        // Use title and description as needed
+        print('Title: $title');
+        print('Description: $description');
+      } else {
+        // Handle case where document does not exist
+        print('Document with ID ${widget.videoID} does not exist');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the fetch operation
+      print('Error fetching video data: $e');
+    }
   }
 
   @override
@@ -224,7 +256,33 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
             ),
           ],
         ),
-      )
+      ),
+      Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.5),
+            ),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SingleChildScrollView(
+                child: Text(title,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+              ),
+              Text(
+                description,
+                style: TextStyle(color: Colors.white, fontSize: 15),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+              )
+            ]),
+          )),
     ]);
   }
 }
