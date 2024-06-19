@@ -11,7 +11,6 @@ class CustomChewieControls extends StatefulWidget {
 
 class _CustomChewieControlsState extends State<CustomChewieControls> {
   bool _isMuted = false;
-
   @override
   Widget build(BuildContext context) {
     final ChewieController chewieController = ChewieController.of(context);
@@ -24,14 +23,7 @@ class _CustomChewieControlsState extends State<CustomChewieControls> {
               ? videoPlayerController.pause()
               : videoPlayerController.play();
         });
-      },
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: <Widget>[
-          _buildPlayPause(videoPlayerController),
-          // _buildBottomBar(context, chewieController),
-        ],
-      ),
+      }
     );
   }
 
@@ -57,40 +49,6 @@ class _CustomChewieControlsState extends State<CustomChewieControls> {
       ),
     );
   }
-
-  Widget _buildBottomBar(BuildContext context, ChewieController chewieController) {
-    final videoPlayerController = chewieController.videoPlayerController;
-    final position = videoPlayerController.value.position;
-
-    return Container(
-      color: Colors.black54,
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Text(
-            '${position.inMinutes}:${(position.inSeconds % 60).toString().padLeft(2, '0')}',
-            style: TextStyle(color: Colors.white),
-          ),
-          SizedBox(width: 10),
-          _buildMuteButton(videoPlayerController),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMuteButton(VideoPlayerController videoPlayerController) {
-    return IconButton(
-      icon: Icon(
-        _isMuted ? Icons.volume_off : Icons.volume_up,
-        color: Colors.white,
-      ),
-      onPressed: () {
-        setState(() {
-          _isMuted = !_isMuted;
-          videoPlayerController.setVolume(_isMuted ? 0.0 : 1.0);
-        });
-      },
-    );
-  }
 }
+ 
+

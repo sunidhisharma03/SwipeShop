@@ -7,6 +7,8 @@ import 'package:video_player/video_player.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:swipeshop_frontend/firebase_options.dart';
 import 'package:swipeshop_frontend/services/customChewieControls.dart';
+import 'package:swipeshop_frontend/services/videoServices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Home',
+      title: 'SwipeShop',
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
@@ -77,7 +79,7 @@ class VideoListScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: videos.length,
               itemBuilder: (context, index) {
-                return VideoPlayerItem(videoUrl: videos[index]['url']);
+                return VideoPlayerItem(videoUrl: videos[index]['url'], videoID: videos[index]['id']);
               },
             );
           },
@@ -89,8 +91,9 @@ class VideoListScreen extends StatelessWidget {
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
+  final String videoID;
 
-  VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
+  VideoPlayerItem({Key? key, required this.videoUrl, required this.videoID}) : super(key: key);
 
   @override
   _VideoPlayerItemState createState() => _VideoPlayerItemState();
@@ -99,6 +102,7 @@ class VideoPlayerItem extends StatefulWidget {
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
   late VideoPlayerController _videoPlayerController;
   ChewieController? _chewieController;
+  bool isLiked = false;
 
   @override
   void initState() {
@@ -117,6 +121,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
         );
       });
     });
+    _checkIfLiked();
   }
 
   @override
@@ -125,6 +130,20 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
     _chewieController?.dispose();
     super.dispose();
   }
+
+  Future<void> _checkIfLiked() async {
+    var userId = FirebaseAuth.instance.currentUser!.uid;
+    var likeQuerySnapshot = await FirebaseFirestore.instance
+        .collection('Likes')
+        .where('videoID', isEqualTo: widget.videoID)
+        .where('userID', isEqualTo: userId)
+        .get();
+
+    setState(() {
+      isLiked = likeQuerySnapshot.docs.isNotEmpty;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -157,12 +176,15 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
             ),
             const SizedBox(height: 12),
             IconButton(
-              icon: const Icon(
+              icon:  Icon(
                 Iconsax.heart,
-                color: Colors.white,
+                color: isLiked ? Color.fromRGBO(222, 12, 82, 1) : Colors.white,
                 size: 35,
               ),
-              onPressed: () {},
+              onPressed: () {
+                var userId = FirebaseAuth.instance.currentUser!.uid;
+                likeVideo(widget.videoID, userId);
+              },
             ),
             const SizedBox(height: 12),
             IconButton(
