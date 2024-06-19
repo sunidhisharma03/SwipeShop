@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chewie/chewie.dart';
+import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:swipeshop_frontend/Comments/comment.dart';
+import 'package:swipeshop_frontend/Comments/newComment.dart';
+import 'package:swipeshop_frontend/Inbox/chat.dart';
 import 'package:video_player/video_player.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:swipeshop_frontend/firebase_options.dart';
@@ -79,7 +81,9 @@ class VideoListScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: videos.length,
               itemBuilder: (context, index) {
-                return VideoPlayerItem(videoUrl: videos[index]['url'], videoID: videos[index]['id']);
+                return VideoPlayerItem(
+                    videoUrl: videos[index]['url'],
+                    videoID: videos[index]['id']);
               },
             );
           },
@@ -93,7 +97,8 @@ class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
   final String videoID;
 
-  VideoPlayerItem({Key? key, required this.videoUrl, required this.videoID}) : super(key: key);
+  VideoPlayerItem({Key? key, required this.videoUrl, required this.videoID})
+      : super(key: key);
 
   @override
   _VideoPlayerItemState createState() => _VideoPlayerItemState();
@@ -103,6 +108,10 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   late VideoPlayerController _videoPlayerController;
   ChewieController? _chewieController;
   bool isLiked = false;
+  var title = '';
+  var description = '';
+  var creatorId = '';
+  var userId = '';
 
   @override
   void initState() {
@@ -122,6 +131,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
       });
     });
     _checkIfLiked();
+    _captions();
   }
 
   @override
@@ -141,9 +151,39 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
 
     setState(() {
       isLiked = likeQuerySnapshot.docs.isNotEmpty;
+      userId = userId;
     });
   }
 
+  Future<void> _captions() async {
+    try {
+      // Fetch video data from Firestore
+      var videoSnapshot = await FirebaseFirestore.instance
+          .collection('Videos')
+          .doc(widget.videoID)
+          .get();
+
+      if (videoSnapshot.exists) {
+        // Check if the document exists
+        setState(() {
+          title = videoSnapshot['title'];
+          description = videoSnapshot['description'];
+          creatorId = videoSnapshot['ownerID'];
+        });
+
+        // Use title and description as needed
+        print('Title: $title');
+        print('Description: $description');
+        print('Creator ID: $creatorId');
+      } else {
+        // Handle case where document does not exist
+        print('Document with ID ${widget.videoID} does not exist');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the fetch operation
+      print('Error fetching video data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +207,15 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Chat(
+                              sellerId: creatorId,
+                              userId: userId,
+                            )));
+              },
               icon: const Icon(
                 Iconsax.message_circle,
                 size: 35,
@@ -176,7 +224,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
             ),
             const SizedBox(height: 12),
             IconButton(
-              icon:  Icon(
+              icon: Icon(
                 Iconsax.heart,
                 color: isLiked ? Color.fromRGBO(222, 12, 82, 1) : Colors.white,
                 size: 35,
@@ -201,7 +249,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                   builder: (BuildContext context) {
                     return Container(
                       height: MediaQuery.of(context).size.height * 0.8,
-                      child: const Comments(),
+                      child: Comments(videoId: widget.videoID),
                       color: Colors.black.withOpacity(0.5),
                     );
                   },
@@ -222,7 +270,33 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
             ),
           ],
         ),
-      )
+      ),
+      Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.5),
+            ),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              SingleChildScrollView(
+                child: Text(title,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+              ),
+              Text(
+                description,
+                style: TextStyle(color: Colors.white, fontSize: 15),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+              )
+            ]),
+          )),
     ]);
   }
 }

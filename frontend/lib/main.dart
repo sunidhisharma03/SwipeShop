@@ -1,5 +1,6 @@
 // import 'dart:js';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,11 +9,12 @@ import 'package:swipeshop_frontend/Home/home.dart';
 import 'package:swipeshop_frontend/Inbox/inbox.dart';
 import 'package:swipeshop_frontend/Profile/profile.dart';
 import 'package:swipeshop_frontend/Search/search.dart';
-import 'package:swipeshop_frontend/test/test.dart';
+import 'package:swipeshop_frontend/services/videoServices.dart';
 import 'firebase_options.dart';
 import 'package:swipeshop_frontend/Home/newHome.dart';
 import 'package:swipeshop_frontend/signIn/authgate.dart';
 import 'package:swipeshop_frontend/signIn/authwrapper.dart';
+import 'package:swipeshop_frontend/modal/user.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,12 +23,7 @@ void main() async {
     '/': (context) => const MyApp(),
     '/wrapper': (context) => const LoginMaybe(),
     '/home': (context) => const Home(),
-    // '/challenges': (context) => const Challenges(),
-    // '/forum': (context) => const Forum(),
     '/signIn': (context) => AuthGate(),
-    // '/user_profile': (context) => UserProfilePage()
-    '/profile': (context) => Profile(
-        name: "John Doe", profilePictureUrl: "aa", location: "kathmandu")
   }));
 }
 
@@ -64,6 +61,7 @@ class MyApp extends StatelessWidget {
 
 class IndexPage extends StatefulWidget {
   const IndexPage({Key? key});
+  
 
   @override
   State<IndexPage> createState() => _IndexPageState();
@@ -72,11 +70,13 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   int _selectedIndex = 1;
   late PageController _pageController;
+  late final Users currentUser;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _selectedIndex);
+    _getUserDetails();
   }
 
   @override
@@ -96,17 +96,13 @@ class _IndexPageState extends State<IndexPage> {
     });
   }
 
-  void _navigateToProfile() {
-    Navigator.pushNamed(
-      context,
-      '/profile', // Route name for Profile screen
-      arguments: {
-        'name': 'John Doe',
-        'profilePictureUrl':
-            'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
-        'location': 'New York, NY',
-      },
-    );
+  Future<void> _getUserDetails() async {
+      var userId = FirebaseAuth.instance.currentUser!.uid;
+      Users current;
+      current = await getUser(userId);
+      setState(() {
+        currentUser = current;
+      });
   }
 
   @override
@@ -128,7 +124,12 @@ class _IndexPageState extends State<IndexPage> {
         leading: IconButton(
           icon: Icon(Icons.person), // Replace with your profile icon
           onPressed: () {
-            _navigateToProfile;
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profile(
+                          current: currentUser,
+                        )));
             // Handle profile icon press (e.g., navigate to profile screen)
           },
         ),
@@ -160,7 +161,7 @@ class _IndexPageState extends State<IndexPage> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Search(),
-            // Home(),
+            
             VideoListScreen(),
             Inbox(),
           ],

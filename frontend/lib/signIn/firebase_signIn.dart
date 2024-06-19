@@ -18,12 +18,15 @@ class Firebase {
       final List<DocumentSnapshot> documents = result.docs;
       var lVids = [];
       var sVids = [];
+      var url ='https://cdn3.iconfinder.com/data/icons/basic-ui-element-s94-3/64/Basic_UI_Icon_Pack_-_Glyph_user-512.png';
       if (documents.isEmpty) {
         await FirebaseFirestore.instance.collection('Users').doc(userCredential.user!.uid).set({
           'email': email,
           'name': name,
           'likedVideos': lVids,
           'sharedVideos': sVids,
+          'url': url,
+          'isMerchant':false,
         });
       }
       return 'success'; // Registration successful, no error message
