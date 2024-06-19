@@ -1,17 +1,49 @@
+// import 'dart:js';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:swipeshop_frontend/Home/home.dart';
 import 'package:swipeshop_frontend/Inbox/inbox.dart';
+import 'package:swipeshop_frontend/Profile/profile.dart';
 import 'package:swipeshop_frontend/Search/search.dart';
 import 'package:swipeshop_frontend/test/test.dart';
 import 'firebase_options.dart';
+import 'package:swipeshop_frontend/Home/newHome.dart';
+import 'package:swipeshop_frontend/signIn/authgate.dart';
+import 'package:swipeshop_frontend/signIn/authwrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(MaterialApp(initialRoute: '/wrapper', routes: {
+    '/': (context) => const MyApp(),
+    '/wrapper': (context) => const LoginMaybe(),
+    '/home': (context) => const Home(),
+    // '/challenges': (context) => const Challenges(),
+    // '/forum': (context) => const Forum(),
+    '/signIn': (context) => AuthGate(),
+    // '/user_profile': (context) => UserProfilePage()
+    '/profile': (context) => Profile(
+        name: "John Doe", profilePictureUrl: "aa", location: "kathmandu")
+  }));
+}
+
+class LoginMaybe extends StatelessWidget {
+  const LoginMaybe({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: AuthWrapper(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +52,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Swipe Shop',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -64,6 +96,19 @@ class _IndexPageState extends State<IndexPage> {
     });
   }
 
+  void _navigateToProfile() {
+    Navigator.pushNamed(
+      context,
+      '/profile', // Route name for Profile screen
+      arguments: {
+        'name': 'John Doe',
+        'profilePictureUrl':
+            'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
+        'location': 'New York, NY',
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +125,13 @@ class _IndexPageState extends State<IndexPage> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.person), // Replace with your profile icon
+          onPressed: () {
+            _navigateToProfile;
+            // Handle profile icon press (e.g., navigate to profile screen)
+          },
+        ),
       ),
       body: GestureDetector(
         onHorizontalDragEnd: (DragEndDetails details) {
@@ -106,9 +158,10 @@ class _IndexPageState extends State<IndexPage> {
         child: PageView(
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
-          children: const [
+          children: [
             Search(),
-            Home(),
+            // Home(),
+            VideoListScreen(),
             Inbox(),
           ],
         ),

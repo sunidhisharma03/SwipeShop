@@ -1,45 +1,54 @@
-import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
+import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class CustomControls extends StatefulWidget {
-  const CustomControls({Key? key}) : super(key: key);
+class CustomChewieControls extends StatefulWidget {
+  const CustomChewieControls({Key? key}) : super(key: key);
 
   @override
-  _CustomControlsState createState() => _CustomControlsState();
+  _CustomChewieControlsState createState() => _CustomChewieControlsState();
 }
 
-class _CustomControlsState extends State<CustomControls> {
-  bool _isPaused = false;
-
-  void _onTap() {
-    setState(() {
-      if (ChewieController.of(context)!.videoPlayerController.value.isPlaying) {
-        ChewieController.of(context)!.videoPlayerController.pause();
-        _isPaused = true;
-      } else {
-        ChewieController.of(context)!.videoPlayerController.play();
-        _isPaused = false;
-      }
-    });
-  }
-
+class _CustomChewieControlsState extends State<CustomChewieControls> {
+  bool _isMuted = false;
   @override
   Widget build(BuildContext context) {
+    final ChewieController chewieController = ChewieController.of(context);
+    final VideoPlayerController videoPlayerController = chewieController.videoPlayerController;
+
     return GestureDetector(
-      onTap: _onTap,
-      child: Stack(
-        children: [
-          if (_isPaused)
-            Center(
-              child: Icon(
-                Icons.pause,
-                color: Colors.white,
-                size: 100.0,
-              ),
-            ),
-        ],
+      onTap: () {
+        setState(() {
+          videoPlayerController.value.isPlaying
+              ? videoPlayerController.pause()
+              : videoPlayerController.play();
+        });
+      }
+    );
+  }
+
+  Widget _buildPlayPause(VideoPlayerController videoPlayerController) {
+    return Center(
+      child: AnimatedOpacity(
+        opacity: videoPlayerController.value.isPlaying ? 0.0 : 0.5,
+        duration: const Duration(milliseconds: 300),
+        child: IconButton(
+          iconSize: 60.0,
+          icon: Icon(
+            videoPlayerController.value.isPlaying ? Icons.pause : Icons.play_arrow,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            setState(() {
+              videoPlayerController.value.isPlaying
+                  ? videoPlayerController.pause()
+                  : videoPlayerController.play();
+            });
+          },
+        ),
       ),
     );
   }
 }
+ 
+
