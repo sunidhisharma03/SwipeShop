@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chewie/chewie.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:video_player/video_player.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:swipeshop_frontend/firebase_options.dart';
 import 'package:swipeshop_frontend/services/customChewieControls.dart';
 
-void main()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
@@ -48,26 +47,40 @@ class VideoListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-        stream: videosCollection.snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          }
-          final videos = snapshot.data!.docs.map((doc) {
-            return {
-              'id':doc.id,
-              'url':doc['url'],
-            };
-          }).toList();
-          return PageView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: videos.length,
-            itemBuilder: (context, index) {
-              return VideoPlayerItem(videoUrl: videos[index]['url']);
-            },
-          );
-        },
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.black.withOpacity(0.5),
+              Colors.grey.withOpacity(0.5),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: StreamBuilder(
+          stream: videosCollection.snapshots(),
+          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            }
+            final videos = snapshot.data!.docs.map((doc) {
+              return {
+                'id': doc.id,
+                'url': doc['url'],
+              };
+            }).toList();
+            return PageView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: videos.length,
+              itemBuilder: (context, index) {
+                return VideoPlayerItem(videoUrl: videos[index]['url']);
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -89,7 +102,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
+    _videoPlayerController =
+        VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
     _videoPlayerController.initialize().then((_) {
       setState(() {
         _chewieController = ChewieController(
@@ -111,16 +125,67 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-        setState(() {
-          _videoPlayerController.value.isPlaying
-              ? _videoPlayerController.pause()
-              : _videoPlayerController.play();
-        });
-      },
-        child:_chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
-        ? Chewie(controller: _chewieController!)
-        : Center(child: CircularProgressIndicator()));
+    return Stack(children: [
+      GestureDetector(
+          onTap: () {
+            setState(() {
+              _videoPlayerController.value.isPlaying
+                  ? _videoPlayerController.pause()
+                  : _videoPlayerController.play();
+            });
+          },
+          child: _chewieController != null &&
+                  _chewieController!.videoPlayerController.value.isInitialized
+              ? Chewie(controller: _chewieController!)
+              : Center(child: CircularProgressIndicator())),
+      Positioned(
+        right: 10,
+        top: MediaQuery.of(context).size.height / 2 - 75,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Iconsax.message_circle,
+                size: 35,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 12),
+            IconButton(
+              icon: const Icon(
+                Iconsax.heart,
+                color: Colors.white,
+                size: 35,
+              ),
+              onPressed: () {},
+            ),
+            const SizedBox(height: 12),
+            IconButton(
+              icon: const Icon(
+                Iconsax.message,
+                color: Colors.white,
+                size: 35,
+              ),
+              onPressed: () {
+                // Handle comment button press
+              },
+            ),
+            const SizedBox(height: 12),
+            IconButton(
+              icon: const Icon(
+                Iconsax.send_2,
+                color: Colors.white,
+                size: 35,
+              ),
+              onPressed: () {
+                // Handle share button press
+              },
+            ),
+          ],
+        ),
+      )
+    ]);
   }
 }
