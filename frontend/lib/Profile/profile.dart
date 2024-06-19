@@ -73,6 +73,13 @@ class Profile extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
+              Text(
+                current.email,
+                style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
               // SizedBox(height: 10),
               // Text(
               //   location,
