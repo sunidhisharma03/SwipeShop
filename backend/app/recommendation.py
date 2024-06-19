@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
 from scipy.sparse import csr_matrix
 from firebase_connection import fetch_collection
@@ -46,18 +47,15 @@ interaction_type_scores = {
 
 # Combine all interactions into a single DataFrame with scores
 def aggregate_interactions(clicks, comments, likes, purchases, shares, views):
-    # Assign interaction types and merge into a single DataFrame
     clicks['interaction_score'] = interaction_type_scores['Click']
     comments['interaction_score'] = interaction_type_scores['Comment']
     likes['interaction_score'] = interaction_type_scores['Likes']
     purchases['interaction_score'] = interaction_type_scores['Purchase']
     shares['interaction_score'] = interaction_type_scores['Shares']
     views['interaction_score'] = interaction_type_scores['View']
-    
-    # Concatenate all interaction DataFrames
+
     interactions = pd.concat([clicks, comments, likes, purchases, shares, views], ignore_index=True)
-    
-    # Example: Aggregate interactions by grouping and computing mean score
+
     try:
         aggregated_interactions = interactions.groupby(['userID', 'videoID'])['interaction_score'].mean().reset_index()
     except KeyError as e:
@@ -73,51 +71,58 @@ try:
 except KeyError as e:
     print(f"KeyError occurred: {str(e)}")
 
-# Preprocess products as before
-def preprocess_products(products):
-    if products.empty:
-        print("Warning: Products DataFrame is empty. Check Firestore data retrieval.")
-        return None, None, None
+# Preprocess videos
+def preprocess_videos(videos):
+    if videos.empty:
+        print("Warning: Videos DataFrame is empty. Check Firestore data retrieval.")
+        return None, None
 
+    # Normalize 'likeCount'
     scaler = StandardScaler()
-    numeric_columns = ['price', 'rating']
+    videos['likeCount'] = scaler.fit_transform(videos[['likeCount']].fillna(0))  # Fill NaNs with 0
 
-    for col in numeric_columns:
-        if col not in products.columns:
-            products[col] = None
+    # Convert 'categories' to one-hot encoding
+    encoder = OneHotEncoder(sparse_output=False)  # Use sparse_output for Scikit-learn 0.22 or later
+    # categories_encoded = encoder.fit_transform(videos[['categories']].fillna('unknown'))  # Fill NaNs with 'unknown'
 
-    products[numeric_columns] = scaler.fit_transform(products[numeric_columns])
+    # Vectorize 'description' and 'title' using TF-IDF
+    vectorizer_desc = TfidfVectorizer(max_features=500)
+    description_tfidf = vectorizer_desc.fit_transform(videos['description'].fillna('')).toarray()
 
-    product_features = products[['price', 'rating']]  # Adjust as per your actual features
-    product_categories = products['category']  # Adjust as per your actual categories
+    vectorizer_title = TfidfVectorizer(max_features=500)
+    title_tfidf = vectorizer_title.fit_transform(videos['title'].fillna('')).toarray()
 
-    return products, product_features, product_categories
+    # Combine all features
+    # video_features = np.hstack((videos[['likeCount']], categories_encoded, description_tfidf, title_tfidf))
+    video_features = np.hstack((videos[['likeCount']], description_tfidf, title_tfidf))
 
-# Preprocess products
-products, product_features, product_categories = preprocess_products(products)
+    return videos, video_features
 
-# Create user-item interaction matrix
-user_item_matrix = interactions.pivot(
-    index='userID', columns='videoID', values='interaction_score').fillna(0)
+# Preprocess videos and get video features
+videos, video_features = preprocess_videos(videos)
 
-# Convert to sparse matrix format
-user_item_sparse = csr_matrix(user_item_matrix.values)
+# Ensure `video_features` is defined before using it
+if video_features is not None and video_features.size > 0:
+    # Create user-item interaction matrix
+    user_item_matrix = interactions.pivot(index='userID', columns='videoID', values='interaction_score').fillna(0)
 
-# Apply Truncated SVD for matrix factorization
-def apply_svd(user_item_sparse, n_components=None):
-    if n_components is None:
-        n_components = min(user_item_sparse.shape[0], user_item_sparse.shape[1]) - 1
-    svd = TruncatedSVD(n_components=n_components, random_state=42)
-    user_factors = svd.fit_transform(user_item_sparse)
-    item_factors = svd.components_.T
-    return user_factors, item_factors
+    # Convert to sparse matrix format
+    user_item_sparse = csr_matrix(user_item_matrix.values)
 
-# Perform SVD with appropriate n_components
-user_factors, item_factors = apply_svd(user_item_sparse)
+    # Apply Truncated SVD for matrix factorization
+    def apply_svd(user_item_sparse, n_components=None):
+        if n_components is None:
+            n_components = min(user_item_sparse.shape[0], user_item_sparse.shape[1]) - 1
+        svd = TruncatedSVD(n_components=n_components, random_state=42)
+        user_factors = svd.fit_transform(user_item_sparse)
+        item_factors = svd.components_.T
+        return user_factors, item_factors
 
-# Ensure correct cosine similarity matrix
-if product_features is not None and not product_features.empty:
-    cosine_similarities = cosine_similarity(product_features)
+    # Perform SVD with appropriate n_components
+    user_factors, item_factors = apply_svd(user_item_sparse)
+
+    # Compute cosine similarities for video features
+    cosine_similarities = cosine_similarity(video_features)
     print("Cosine Similarities Shape:", cosine_similarities.shape)
 else:
     cosine_similarities = None
@@ -133,7 +138,7 @@ def hybrid_recommendations(user_id, top_n=10, weight_cf=0.5, weight_cb=0.5):
 
     # Ensure user_interactions is correctly shaped
     user_interactions = user_interactions.reshape(1, -1)
-    
+
     print("User Interactions Shape:", user_interactions.shape)
     print("User Factors Shape:", user_factors.shape)
     print("Item Factors Shape:", item_factors.shape)
@@ -154,17 +159,7 @@ def hybrid_recommendations(user_id, top_n=10, weight_cf=0.5, weight_cb=0.5):
         combined_scores = cf_recommendations
 
     top_indices = combined_scores.argsort()[-top_n:][::-1]
-    recommended_products = products.iloc[top_indices].copy()
+    recommended_videos = videos.iloc[top_indices].copy()
 
-    recommended_products = recommended_products.merge(
-        videos[['video_id']], on='product_id', how='left')
+    return recommended_videos[['video_id', 'title']]  # Assuming 'title' is a column in videos
 
-    return recommended_products[['product_id', 'video_id']]
-
-# Example usage
-# try:
-#     user_id = users['user_id'].iloc[0]  # Replace with an actual user ID from your dataset
-#     recommendations = hybrid_recommendations(user_id, top_n=10)
-#     print("Recommendations:\n", recommendations)
-# except ValueError as e:
-#     print(f"Error: {e}")
