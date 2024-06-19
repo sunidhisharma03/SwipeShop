@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chewie/chewie.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:swipeshop_frontend/Comments/comment.dart';
 import 'package:video_player/video_player.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:swipeshop_frontend/firebase_options.dart';
@@ -17,9 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TikTok Clone',
+      title: 'Home',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
       home: VideoListScreen(),
     );
@@ -111,6 +112,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
           autoPlay: true,
           looping: true,
           customControls: CustomChewieControls(),
+          aspectRatio: _videoPlayerController.value.aspectRatio,
+          allowFullScreen: true, // Allow full screen mode
         );
       });
     });
@@ -125,7 +128,7 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
+    return Stack(fit: StackFit.expand, children: [
       GestureDetector(
           onTap: () {
             setState(() {
@@ -169,6 +172,18 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                 size: 35,
               ),
               onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  enableDrag: true,
+                  isScrollControlled: true,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: MediaQuery.of(context).size.height * 0.8,
+                      child: const Comments(),
+                      color: Colors.black.withOpacity(0.5),
+                    );
+                  },
+                );
                 // Handle comment button press
               },
             ),
