@@ -23,10 +23,7 @@ void main() async {
     '/': (context) => const MyApp(),
     '/wrapper': (context) => const LoginMaybe(),
     '/home': (context) => const Home(),
-    // '/challenges': (context) => const Challenges(),
-    // '/forum': (context) => const Forum(),
     '/signIn': (context) => AuthGate(),
-    // '/user_profile': (context) => UserProfilePage()
   }));
 }
 
@@ -73,7 +70,7 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   int _selectedIndex = 1;
   late PageController _pageController;
-   late Users currentUser;
+  late final Users currentUser;
 
   @override
   void initState() {
@@ -105,7 +102,10 @@ class _IndexPageState extends State<IndexPage> {
       current = await getUser(userId);
       setState(() {
         currentUser = current;
+<<<<<<< HEAD
         print(currentUser.name);
+=======
+>>>>>>> ea4efaba153f96d480183201c487bee233893f39
       });
   }
 
