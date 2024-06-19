@@ -6,6 +6,8 @@ import 'package:video_player/video_player.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:swipeshop_frontend/firebase_options.dart';
 import 'package:swipeshop_frontend/services/customChewieControls.dart';
+import 'package:swipeshop_frontend/services/videoServices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -76,7 +78,7 @@ class VideoListScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: videos.length,
               itemBuilder: (context, index) {
-                return VideoPlayerItem(videoUrl: videos[index]['url']);
+                return VideoPlayerItem(videoUrl: videos[index]['url'], videoID: videos[index]['id']);
               },
             );
           },
@@ -88,8 +90,9 @@ class VideoListScreen extends StatelessWidget {
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
+  final String videoID;
 
-  VideoPlayerItem({Key? key, required this.videoUrl}) : super(key: key);
+  VideoPlayerItem({Key? key, required this.videoUrl, required this.videoID}) : super(key: key);
 
   @override
   _VideoPlayerItemState createState() => _VideoPlayerItemState();
@@ -159,7 +162,10 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                 color: Colors.white,
                 size: 35,
               ),
-              onPressed: () {},
+              onPressed: () {
+                var userId = FirebaseAuth.instance.currentUser!.uid;
+                likeVideo(widget.videoID, userId);
+              },
             ),
             const SizedBox(height: 12),
             IconButton(
