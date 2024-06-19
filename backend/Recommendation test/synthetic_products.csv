@@ -1,0 +1,501 @@
+product_id,category,price,rating,description,video_id
+1,Sports,340.62,3.0,"This Sports is comfortable and lightweight, designed for durable activities. It's professional-grade and high-performance, ideal for any sports enthusiast.",1001
+2,Books,125.9,3.8,"Our Books offers a must-read experience with bestselling insights. It's engaging and informative, ideal for any reader.",1002
+3,Sports,137.85,4.4,"Achieve your best with our professional-grade and high-performance Sports. It's comfortable and durable, perfect for lightweight performance.",1003
+4,Clothing,113.46,1.6,"This Clothing combines trendy style with comfortable comfort. It's versatile and breathable, suitable for all occasions.",1004
+5,Books,330.76,2.6,"Our Books offers a classic experience with informative insights. It's engaging and bestselling, ideal for any reader.",1005
+6,Clothing,88.39,4.9,"Our Clothing is stylish and versatile, perfect for trendy wear. It's comfortable and breathable, making it a staple in any wardrobe.",1006
+7,Beauty,171.85,1.6,"Experience luxurious and premium quality care with our Beauty. It's natural ingredients and hypoallergenic, perfect for a long-lasting routine.",1007
+8,Home,123.21,3.4,"Enhance your living space with our elegant and cozy Home. It's durable and modern, perfect for any home.",1008
+9,Clothing,64.73,2.0,"This Clothing combines versatile style with stylish comfort. It's breathable and comfortable, suitable for all occasions.",1009
+10,Beauty,253.35,2.4,"Experience hypoallergenic and luxurious care with our Beauty. It's long-lasting and natural ingredients, perfect for a premium quality routine.",1010
+11,Electronics,176.96,2.1,"This Electronics item features compact design and high-performance functionality. It's durable and user-friendly, perfect for everyday use.",1011
+12,Beauty,129.05,4.0,"Our Beauty features natural ingredients ingredients and premium quality results. It's hypoallergenic and long-lasting, ensuring a luxurious glow.",1012
+13,Home,219.63,4.2,"Our Home is elegant and functional, designed for cozy use. It's modern and durable, adding a touch of elegance to your home.",1013
+14,Beauty,474.71,2.3,"Experience hypoallergenic and premium quality care with our Beauty. It's natural ingredients and long-lasting, perfect for a luxurious routine.",1014
+15,Sports,254.19,1.8,"This Sports is durable and comfortable, designed for lightweight activities. It's high-performance and professional-grade, ideal for any sports enthusiast.",1015
+16,Sports,178.93,4.0,"Achieve your best with our professional-grade and comfortable Sports. It's lightweight and high-performance, perfect for durable performance.",1016
+17,Books,400.17,3.7,"Our Books offers a must-read experience with engaging insights. It's informative and classic, ideal for any reader.",1017
+18,Sports,284.52,1.2,"This Sports is durable and professional-grade, designed for lightweight activities. It's comfortable and high-performance, ideal for any sports enthusiast.",1018
+19,Beauty,229.03,4.0,"Our Beauty features premium quality ingredients and hypoallergenic results. It's long-lasting and luxurious, ensuring a natural ingredients glow.",1019
+20,Books,104.65,4.9,"Our Books offers a classic experience with bestselling insights. It's engaging and informative, ideal for any reader.",1020
+21,Electronics,200.5,1.4,"This Electronics item features high-performance design and durable functionality. It's latest technology and compact, perfect for everyday use.",1021
+22,Books,438.38,1.2,"Dive into this Books with our informative and bestselling read. It's engaging and classic, a must-read addition to any collection.",1022
+23,Electronics,343.1,3.5,"Experience the compact of our Electronics with this durable product. It's user-friendly and latest technology, ensuring high performance.",1023
+24,Electronics,472.99,2.8,"Experience the user-friendly of our Electronics with this high-performance product. It's compact and latest technology, ensuring high performance.",1024
+25,Sports,54.82,1.7,"Achieve your best with our professional-grade and durable Sports. It's comfortable and lightweight, perfect for high-performance performance.",1025
+26,Home,95.44,2.7,"Enhance your living space with our elegant and cozy Home. It's modern and functional, perfect for any home.",1026
+27,Beauty,182.13,2.9,"Experience luxurious and long-lasting care with our Beauty. It's premium quality and natural ingredients, perfect for a hypoallergenic routine.",1027
+28,Electronics,393.74,2.7,"This Electronics item features compact design and user-friendly functionality. It's high-performance and durable, perfect for everyday use.",1028
+29,Clothing,291.2,1.6,"Our Clothing is breathable and trendy, perfect for comfortable wear. It's stylish and versatile, making it a staple in any wardrobe.",1029
+30,Beauty,324.61,4.4,"Our Beauty features luxurious ingredients and natural ingredients results. It's long-lasting and hypoallergenic, ensuring a premium quality glow.",1030
+31,Sports,150.22,3.5,"Achieve your best with our high-performance and lightweight Sports. It's professional-grade and durable, perfect for comfortable performance.",1031
+32,Sports,229.52,2.7,"Achieve your best with our high-performance and professional-grade Sports. It's comfortable and lightweight, perfect for durable performance.",1032
+33,Books,240.6,2.9,"Our Books offers a bestselling experience with engaging insights. It's classic and must-read, ideal for any reader.",1033
+34,Electronics,166.51,4.6,"Experience the user-friendly of our Electronics with this compact product. It's latest technology and high-performance, ensuring high performance.",1034
+35,Beauty,249.47,1.3,"Experience natural ingredients and luxurious care with our Beauty. It's hypoallergenic and long-lasting, perfect for a premium quality routine.",1035
+36,Clothing,164.42,1.8,"Our Clothing is trendy and versatile, perfect for comfortable wear. It's breathable and stylish, making it a staple in any wardrobe.",1036
+37,Books,486.63,1.3,"Dive into this Books with our bestselling and classic read. It's engaging and must-read, a informative addition to any collection.",1037
+38,Clothing,99.7,3.2,"Our Clothing is stylish and comfortable, perfect for versatile wear. It's trendy and breathable, making it a staple in any wardrobe.",1038
+39,Books,9.59,1.5,"Dive into this Books with our informative and engaging read. It's must-read and bestselling, a classic addition to any collection.",1039
+40,Electronics,179.9,2.1,"Experience the high-performance of our Electronics with this compact product. It's durable and latest technology, ensuring high performance.",1040
+41,Home,313.84,3.1,"Our Home is functional and elegant, designed for durable use. It's modern and cozy, adding a touch of elegance to your home.",1041
+42,Sports,448.42,2.3,"This Sports is lightweight and comfortable, designed for high-performance activities. It's professional-grade and durable, ideal for any sports enthusiast.",1042
+43,Books,225.54,3.5,"Dive into this Books with our engaging and bestselling read. It's must-read and classic, a informative addition to any collection.",1043
+44,Sports,499.87,3.2,"This Sports is professional-grade and lightweight, designed for comfortable activities. It's durable and high-performance, ideal for any sports enthusiast.",1044
+45,Sports,113.24,1.7,"Achieve your best with our professional-grade and durable Sports. It's comfortable and high-performance, perfect for lightweight performance.",1045
+46,Electronics,77.0,4.1,"This Electronics item features user-friendly design and latest technology functionality. It's compact and durable, perfect for everyday use.",1046
+47,Clothing,437.48,3.9,"Our Clothing is breathable and trendy, perfect for comfortable wear. It's stylish and versatile, making it a staple in any wardrobe.",1047
+48,Electronics,51.42,4.6,"Experience the high-performance of our Electronics with this durable product. It's user-friendly and latest technology, ensuring high performance.",1048
+49,Beauty,180.43,3.8,"Experience natural ingredients and luxurious care with our Beauty. It's long-lasting and premium quality, perfect for a hypoallergenic routine.",1049
+50,Electronics,220.23,1.4,"This Electronics item features high-performance design and durable functionality. It's user-friendly and latest technology, perfect for everyday use.",1050
+51,Electronics,447.73,2.0,"Experience the durable of our Electronics with this high-performance product. It's latest technology and compact, ensuring high performance.",1051
+52,Books,401.19,4.1,"Our Books offers a informative experience with bestselling insights. It's must-read and classic, ideal for any reader.",1052
+53,Clothing,335.25,4.0,"This Clothing combines breathable style with stylish comfort. It's comfortable and versatile, suitable for all occasions.",1053
+54,Beauty,416.39,1.4,"Experience premium quality and luxurious care with our Beauty. It's long-lasting and natural ingredients, perfect for a hypoallergenic routine.",1054
+55,Clothing,20.68,2.1,"This Clothing combines trendy style with comfortable comfort. It's versatile and breathable, suitable for all occasions.",1055
+56,Sports,146.57,3.7,"This Sports is durable and lightweight, designed for professional-grade activities. It's comfortable and high-performance, ideal for any sports enthusiast.",1056
+57,Beauty,340.42,4.5,"Our Beauty features luxurious ingredients and long-lasting results. It's natural ingredients and hypoallergenic, ensuring a premium quality glow.",1057
+58,Books,190.05,1.9,"Our Books offers a classic experience with must-read insights. It's bestselling and engaging, ideal for any reader.",1058
+59,Books,218.53,3.2,"Dive into this Books with our informative and bestselling read. It's engaging and must-read, a classic addition to any collection.",1059
+60,Beauty,401.12,2.9,"Our Beauty features luxurious ingredients and natural ingredients results. It's long-lasting and premium quality, ensuring a hypoallergenic glow.",1060
+61,Electronics,201.57,2.9,"This Electronics item features user-friendly design and high-performance functionality. It's compact and latest technology, perfect for everyday use.",1061
+62,Beauty,497.67,2.2,"Experience hypoallergenic and natural ingredients care with our Beauty. It's luxurious and long-lasting, perfect for a premium quality routine.",1062
+63,Clothing,445.87,1.5,"Our Clothing is breathable and stylish, perfect for trendy wear. It's versatile and comfortable, making it a staple in any wardrobe.",1063
+64,Books,330.26,2.1,"Our Books offers a bestselling experience with classic insights. It's must-read and informative, ideal for any reader.",1064
+65,Beauty,111.89,3.6,"Experience natural ingredients and long-lasting care with our Beauty. It's hypoallergenic and luxurious, perfect for a premium quality routine.",1065
+66,Clothing,296.53,1.8,"Our Clothing is trendy and comfortable, perfect for breathable wear. It's stylish and versatile, making it a staple in any wardrobe.",1066
+67,Home,130.12,1.7,"Enhance your living space with our elegant and cozy Home. It's functional and modern, perfect for any home.",1067
+68,Electronics,179.39,3.9,"Experience the high-performance of our Electronics with this user-friendly product. It's latest technology and compact, ensuring high performance.",1068
+69,Books,202.19,3.7,"Dive into this Books with our classic and bestselling read. It's engaging and informative, a must-read addition to any collection.",1069
+70,Home,120.17,3.5,"Enhance your living space with our functional and modern Home. It's elegant and durable, perfect for any home.",1070
+71,Clothing,130.8,2.1,"This Clothing combines versatile style with breathable comfort. It's stylish and trendy, suitable for all occasions.",1071
+72,Sports,341.51,1.5,"This Sports is durable and professional-grade, designed for high-performance activities. It's lightweight and comfortable, ideal for any sports enthusiast.",1072
+73,Clothing,220.83,2.4,"This Clothing combines stylish style with versatile comfort. It's breathable and comfortable, suitable for all occasions.",1073
+74,Clothing,166.55,3.5,"This Clothing combines stylish style with breathable comfort. It's comfortable and trendy, suitable for all occasions.",1074
+75,Sports,351.82,3.7,"Achieve your best with our high-performance and comfortable Sports. It's durable and lightweight, perfect for professional-grade performance.",1075
+76,Home,409.13,4.1,"Enhance your living space with our cozy and elegant Home. It's functional and durable, perfect for any home.",1076
+77,Home,383.7,3.1,"Enhance your living space with our cozy and modern Home. It's elegant and functional, perfect for any home.",1077
+78,Clothing,236.5,3.7,"This Clothing combines trendy style with breathable comfort. It's stylish and versatile, suitable for all occasions.",1078
+79,Home,16.45,4.4,"Enhance your living space with our functional and elegant Home. It's durable and modern, perfect for any home.",1079
+80,Sports,335.64,3.5,"Achieve your best with our high-performance and durable Sports. It's lightweight and comfortable, perfect for professional-grade performance.",1080
+81,Electronics,45.33,3.5,"This Electronics item features latest technology design and durable functionality. It's user-friendly and compact, perfect for everyday use.",1081
+82,Sports,133.63,4.2,"This Sports is lightweight and professional-grade, designed for high-performance activities. It's comfortable and durable, ideal for any sports enthusiast.",1082
+83,Clothing,71.18,4.1,"This Clothing combines stylish style with trendy comfort. It's versatile and comfortable, suitable for all occasions.",1083
+84,Electronics,294.41,3.3,"This Electronics item features compact design and user-friendly functionality. It's latest technology and high-performance, perfect for everyday use.",1084
+85,Sports,262.13,3.9,"Achieve your best with our durable and high-performance Sports. It's professional-grade and lightweight, perfect for comfortable performance.",1085
+86,Home,289.92,1.6,"Enhance your living space with our functional and elegant Home. It's cozy and durable, perfect for any home.",1086
+87,Beauty,161.1,3.9,"Experience natural ingredients and hypoallergenic care with our Beauty. It's premium quality and luxurious, perfect for a long-lasting routine.",1087
+88,Home,384.47,4.9,"Our Home is cozy and durable, designed for modern use. It's functional and elegant, adding a touch of elegance to your home.",1088
+89,Electronics,255.8,4.4,"This Electronics item features compact design and durable functionality. It's latest technology and user-friendly, perfect for everyday use.",1089
+90,Sports,316.48,4.9,"This Sports is high-performance and lightweight, designed for professional-grade activities. It's durable and comfortable, ideal for any sports enthusiast.",1090
+91,Clothing,22.64,2.3,"This Clothing combines versatile style with breathable comfort. It's comfortable and trendy, suitable for all occasions.",1091
+92,Home,54.7,3.3,"Our Home is modern and durable, designed for cozy use. It's elegant and functional, adding a touch of elegance to your home.",1092
+93,Beauty,5.13,2.3,"Our Beauty features long-lasting ingredients and premium quality results. It's natural ingredients and hypoallergenic, ensuring a luxurious glow.",1093
+94,Books,336.71,4.8,"Dive into this Books with our must-read and bestselling read. It's classic and informative, a engaging addition to any collection.",1094
+95,Books,275.42,4.5,"Dive into this Books with our bestselling and engaging read. It's informative and must-read, a classic addition to any collection.",1095
+96,Books,169.86,2.6,"Dive into this Books with our classic and informative read. It's engaging and bestselling, a must-read addition to any collection.",1096
+97,Electronics,223.51,3.6,"Experience the user-friendly of our Electronics with this high-performance product. It's durable and compact, ensuring high performance.",1097
+98,Home,409.04,1.5,"Enhance your living space with our durable and cozy Home. It's functional and elegant, perfect for any home.",1098
+99,Electronics,44.72,2.5,"This Electronics item features high-performance design and latest technology functionality. It's user-friendly and durable, perfect for everyday use.",1099
+100,Beauty,377.41,4.7,"Experience luxurious and hypoallergenic care with our Beauty. It's natural ingredients and premium quality, perfect for a long-lasting routine.",1100
+101,Clothing,327.94,3.1,"This Clothing combines breathable style with versatile comfort. It's stylish and trendy, suitable for all occasions.",1101
+102,Beauty,188.37,3.7,"Experience premium quality and luxurious care with our Beauty. It's natural ingredients and hypoallergenic, perfect for a long-lasting routine.",1102
+103,Electronics,388.55,1.3,"Experience the high-performance of our Electronics with this compact product. It's durable and latest technology, ensuring high performance.",1103
+104,Books,382.86,3.1,"Dive into this Books with our engaging and informative read. It's must-read and classic, a bestselling addition to any collection.",1104
+105,Home,376.31,4.4,"Enhance your living space with our elegant and durable Home. It's functional and modern, perfect for any home.",1105
+106,Beauty,482.15,2.7,"Our Beauty features natural ingredients ingredients and luxurious results. It's hypoallergenic and premium quality, ensuring a long-lasting glow.",1106
+107,Home,400.51,3.1,"Enhance your living space with our modern and durable Home. It's cozy and elegant, perfect for any home.",1107
+108,Clothing,116.95,3.2,"Our Clothing is breathable and versatile, perfect for trendy wear. It's comfortable and stylish, making it a staple in any wardrobe.",1108
+109,Books,289.67,1.6,"Dive into this Books with our bestselling and must-read read. It's informative and engaging, a classic addition to any collection.",1109
+110,Beauty,37.2,2.0,"Experience long-lasting and premium quality care with our Beauty. It's natural ingredients and hypoallergenic, perfect for a luxurious routine.",1110
+111,Clothing,118.53,1.0,"Our Clothing is breathable and versatile, perfect for comfortable wear. It's stylish and trendy, making it a staple in any wardrobe.",1111
+112,Books,279.71,1.1,"Our Books offers a bestselling experience with must-read insights. It's informative and classic, ideal for any reader.",1112
+113,Home,358.29,2.1,"Our Home is modern and elegant, designed for durable use. It's functional and cozy, adding a touch of elegance to your home.",1113
+114,Clothing,403.75,2.3,"Our Clothing is breathable and comfortable, perfect for trendy wear. It's versatile and stylish, making it a staple in any wardrobe.",1114
+115,Home,490.33,1.9,"Our Home is modern and cozy, designed for elegant use. It's durable and functional, adding a touch of elegance to your home.",1115
+116,Beauty,7.48,3.2,"Experience hypoallergenic and natural ingredients care with our Beauty. It's premium quality and long-lasting, perfect for a luxurious routine.",1116
+117,Home,360.13,3.3,"Our Home is modern and elegant, designed for durable use. It's functional and cozy, adding a touch of elegance to your home.",1117
+118,Books,45.47,2.1,"Our Books offers a must-read experience with bestselling insights. It's classic and engaging, ideal for any reader.",1118
+119,Sports,481.17,3.9,"This Sports is lightweight and high-performance, designed for durable activities. It's professional-grade and comfortable, ideal for any sports enthusiast.",1119
+120,Beauty,147.77,3.6,"Experience long-lasting and luxurious care with our Beauty. It's hypoallergenic and natural ingredients, perfect for a premium quality routine.",1120
+121,Home,355.97,3.7,"Our Home is elegant and durable, designed for cozy use. It's modern and functional, adding a touch of elegance to your home.",1121
+122,Beauty,258.53,4.5,"Experience natural ingredients and hypoallergenic care with our Beauty. It's premium quality and luxurious, perfect for a long-lasting routine.",1122
+123,Books,264.8,2.4,"Our Books offers a engaging experience with bestselling insights. It's classic and informative, ideal for any reader.",1123
+124,Sports,490.66,1.7,"Achieve your best with our high-performance and comfortable Sports. It's durable and professional-grade, perfect for lightweight performance.",1124
+125,Sports,78.57,2.8,"Achieve your best with our durable and high-performance Sports. It's lightweight and professional-grade, perfect for comfortable performance.",1125
+126,Beauty,454.27,2.1,"Experience natural ingredients and long-lasting care with our Beauty. It's hypoallergenic and premium quality, perfect for a luxurious routine.",1126
+127,Books,231.68,3.8,"Our Books offers a informative experience with classic insights. It's bestselling and must-read, ideal for any reader.",1127
+128,Books,326.73,4.8,"Our Books offers a informative experience with engaging insights. It's bestselling and must-read, ideal for any reader.",1128
+129,Electronics,345.02,4.9,"This Electronics item features user-friendly design and durable functionality. It's compact and latest technology, perfect for everyday use.",1129
+130,Clothing,185.31,2.4,"Our Clothing is versatile and comfortable, perfect for trendy wear. It's stylish and breathable, making it a staple in any wardrobe.",1130
+131,Sports,488.74,4.7,"Achieve your best with our comfortable and high-performance Sports. It's lightweight and durable, perfect for professional-grade performance.",1131
+132,Books,237.51,1.4,"Our Books offers a engaging experience with must-read insights. It's informative and classic, ideal for any reader.",1132
+133,Electronics,134.15,4.4,"This Electronics item features user-friendly design and high-performance functionality. It's durable and compact, perfect for everyday use.",1133
+134,Books,169.61,4.5,"Dive into this Books with our engaging and bestselling read. It's must-read and informative, a classic addition to any collection.",1134
+135,Home,266.64,2.9,"Enhance your living space with our durable and functional Home. It's cozy and modern, perfect for any home.",1135
+136,Clothing,37.55,1.5,"This Clothing combines comfortable style with stylish comfort. It's breathable and versatile, suitable for all occasions.",1136
+137,Home,368.71,3.6,"Our Home is modern and cozy, designed for functional use. It's durable and elegant, adding a touch of elegance to your home.",1137
+138,Electronics,331.46,2.9,"Experience the high-performance of our Electronics with this durable product. It's latest technology and compact, ensuring high performance.",1138
+139,Home,243.47,4.6,"Our Home is modern and elegant, designed for cozy use. It's durable and functional, adding a touch of elegance to your home.",1139
+140,Beauty,366.35,3.8,"Our Beauty features long-lasting ingredients and natural ingredients results. It's premium quality and luxurious, ensuring a hypoallergenic glow.",1140
+141,Books,458.92,3.8,"Our Books offers a must-read experience with informative insights. It's engaging and bestselling, ideal for any reader.",1141
+142,Home,423.78,4.5,"Our Home is modern and cozy, designed for durable use. It's elegant and functional, adding a touch of elegance to your home.",1142
+143,Beauty,299.22,2.7,"Experience natural ingredients and long-lasting care with our Beauty. It's luxurious and premium quality, perfect for a hypoallergenic routine.",1143
+144,Clothing,25.82,3.3,"Our Clothing is stylish and versatile, perfect for comfortable wear. It's breathable and trendy, making it a staple in any wardrobe.",1144
+145,Electronics,9.66,3.5,"This Electronics item features latest technology design and high-performance functionality. It's durable and compact, perfect for everyday use.",1145
+146,Beauty,371.07,3.2,"Experience luxurious and hypoallergenic care with our Beauty. It's long-lasting and premium quality, perfect for a natural ingredients routine.",1146
+147,Clothing,149.45,3.9,"This Clothing combines trendy style with versatile comfort. It's breathable and stylish, suitable for all occasions.",1147
+148,Beauty,344.99,3.1,"Experience premium quality and natural ingredients care with our Beauty. It's luxurious and hypoallergenic, perfect for a long-lasting routine.",1148
+149,Home,120.14,1.3,"Our Home is functional and cozy, designed for elegant use. It's modern and durable, adding a touch of elegance to your home.",1149
+150,Electronics,205.79,4.1,"Experience the high-performance of our Electronics with this user-friendly product. It's durable and compact, ensuring high performance.",1150
+151,Books,453.17,3.6,"Dive into this Books with our classic and engaging read. It's informative and must-read, a bestselling addition to any collection.",1151
+152,Home,47.21,2.3,"Enhance your living space with our cozy and durable Home. It's modern and elegant, perfect for any home.",1152
+153,Beauty,141.15,3.1,"Experience long-lasting and luxurious care with our Beauty. It's premium quality and hypoallergenic, perfect for a natural ingredients routine.",1153
+154,Clothing,179.38,1.4,"Our Clothing is versatile and comfortable, perfect for trendy wear. It's stylish and breathable, making it a staple in any wardrobe.",1154
+155,Clothing,373.29,3.2,"This Clothing combines stylish style with trendy comfort. It's breathable and versatile, suitable for all occasions.",1155
+156,Clothing,353.33,3.8,"This Clothing combines versatile style with breathable comfort. It's trendy and stylish, suitable for all occasions.",1156
+157,Sports,381.63,4.2,"This Sports is comfortable and durable, designed for high-performance activities. It's professional-grade and lightweight, ideal for any sports enthusiast.",1157
+158,Electronics,184.97,4.2,"This Electronics item features latest technology design and durable functionality. It's high-performance and compact, perfect for everyday use.",1158
+159,Sports,54.91,3.9,"This Sports is comfortable and durable, designed for high-performance activities. It's lightweight and professional-grade, ideal for any sports enthusiast.",1159
+160,Sports,273.16,2.6,"This Sports is lightweight and professional-grade, designed for comfortable activities. It's durable and high-performance, ideal for any sports enthusiast.",1160
+161,Electronics,215.62,2.3,"This Electronics item features high-performance design and compact functionality. It's user-friendly and latest technology, perfect for everyday use.",1161
+162,Clothing,179.04,4.7,"This Clothing combines trendy style with stylish comfort. It's comfortable and versatile, suitable for all occasions.",1162
+163,Sports,474.04,3.2,"Achieve your best with our high-performance and lightweight Sports. It's durable and comfortable, perfect for professional-grade performance.",1163
+164,Electronics,107.98,2.7,"Experience the high-performance of our Electronics with this durable product. It's user-friendly and latest technology, ensuring high performance.",1164
+165,Sports,258.51,3.0,"This Sports is lightweight and durable, designed for high-performance activities. It's professional-grade and comfortable, ideal for any sports enthusiast.",1165
+166,Beauty,250.75,4.8,"Our Beauty features premium quality ingredients and natural ingredients results. It's long-lasting and luxurious, ensuring a hypoallergenic glow.",1166
+167,Books,168.37,1.7,"Our Books offers a bestselling experience with must-read insights. It's classic and engaging, ideal for any reader.",1167
+168,Electronics,74.35,2.9,"This Electronics item features durable design and latest technology functionality. It's compact and high-performance, perfect for everyday use.",1168
+169,Electronics,300.16,4.6,"Experience the user-friendly of our Electronics with this latest technology product. It's compact and high-performance, ensuring high performance.",1169
+170,Sports,65.52,4.4,"This Sports is comfortable and professional-grade, designed for lightweight activities. It's durable and high-performance, ideal for any sports enthusiast.",1170
+171,Home,245.41,2.5,"Enhance your living space with our cozy and modern Home. It's durable and functional, perfect for any home.",1171
+172,Clothing,278.83,4.5,"Our Clothing is comfortable and versatile, perfect for stylish wear. It's trendy and breathable, making it a staple in any wardrobe.",1172
+173,Beauty,232.72,2.9,"Our Beauty features premium quality ingredients and long-lasting results. It's natural ingredients and luxurious, ensuring a hypoallergenic glow.",1173
+174,Beauty,343.21,3.0,"Our Beauty features luxurious ingredients and natural ingredients results. It's premium quality and hypoallergenic, ensuring a long-lasting glow.",1174
+175,Sports,407.11,2.4,"This Sports is comfortable and professional-grade, designed for durable activities. It's lightweight and high-performance, ideal for any sports enthusiast.",1175
+176,Clothing,52.8,4.1,"This Clothing combines versatile style with trendy comfort. It's comfortable and breathable, suitable for all occasions.",1176
+177,Books,438.98,3.8,"Dive into this Books with our informative and classic read. It's engaging and must-read, a bestselling addition to any collection.",1177
+178,Sports,405.49,3.6,"This Sports is high-performance and lightweight, designed for durable activities. It's professional-grade and comfortable, ideal for any sports enthusiast.",1178
+179,Books,217.99,3.1,"Our Books offers a engaging experience with bestselling insights. It's classic and must-read, ideal for any reader.",1179
+180,Electronics,332.67,2.9,"Experience the high-performance of our Electronics with this durable product. It's compact and latest technology, ensuring high performance.",1180
+181,Books,18.15,3.9,"Dive into this Books with our informative and must-read read. It's classic and bestselling, a engaging addition to any collection.",1181
+182,Beauty,9.08,3.3,"Experience hypoallergenic and long-lasting care with our Beauty. It's luxurious and natural ingredients, perfect for a premium quality routine.",1182
+183,Clothing,290.81,4.2,"This Clothing combines breathable style with versatile comfort. It's stylish and comfortable, suitable for all occasions.",1183
+184,Clothing,18.1,1.6,"Our Clothing is trendy and comfortable, perfect for breathable wear. It's stylish and versatile, making it a staple in any wardrobe.",1184
+185,Beauty,296.1,2.4,"Our Beauty features hypoallergenic ingredients and luxurious results. It's long-lasting and premium quality, ensuring a natural ingredients glow.",1185
+186,Electronics,360.0,4.3,"This Electronics item features user-friendly design and compact functionality. It's latest technology and high-performance, perfect for everyday use.",1186
+187,Clothing,62.53,2.1,"Our Clothing is stylish and versatile, perfect for breathable wear. It's trendy and comfortable, making it a staple in any wardrobe.",1187
+188,Home,352.0,4.4,"Our Home is functional and elegant, designed for durable use. It's modern and cozy, adding a touch of elegance to your home.",1188
+189,Books,275.88,4.5,"Dive into this Books with our must-read and informative read. It's bestselling and classic, a engaging addition to any collection.",1189
+190,Beauty,72.06,1.2,"Our Beauty features hypoallergenic ingredients and premium quality results. It's natural ingredients and luxurious, ensuring a long-lasting glow.",1190
+191,Books,124.28,3.2,"Our Books offers a must-read experience with engaging insights. It's classic and bestselling, ideal for any reader.",1191
+192,Clothing,347.61,2.7,"This Clothing combines breathable style with versatile comfort. It's comfortable and trendy, suitable for all occasions.",1192
+193,Sports,418.16,3.6,"Achieve your best with our professional-grade and high-performance Sports. It's lightweight and comfortable, perfect for durable performance.",1193
+194,Home,73.31,1.7,"Enhance your living space with our cozy and functional Home. It's elegant and modern, perfect for any home.",1194
+195,Home,230.62,4.2,"Our Home is functional and elegant, designed for durable use. It's modern and cozy, adding a touch of elegance to your home.",1195
+196,Clothing,85.85,4.4,"This Clothing combines trendy style with breathable comfort. It's stylish and comfortable, suitable for all occasions.",1196
+197,Sports,7.92,3.2,"This Sports is comfortable and professional-grade, designed for high-performance activities. It's lightweight and durable, ideal for any sports enthusiast.",1197
+198,Electronics,146.43,3.0,"Experience the compact of our Electronics with this user-friendly product. It's high-performance and latest technology, ensuring high performance.",1198
+199,Electronics,294.36,4.4,"This Electronics item features high-performance design and latest technology functionality. It's user-friendly and durable, perfect for everyday use.",1199
+200,Sports,373.61,3.5,"This Sports is comfortable and durable, designed for professional-grade activities. It's lightweight and high-performance, ideal for any sports enthusiast.",1200
+201,Electronics,458.4,2.1,"Experience the user-friendly of our Electronics with this latest technology product. It's compact and high-performance, ensuring high performance.",1201
+202,Sports,386.03,2.6,"Achieve your best with our durable and lightweight Sports. It's comfortable and high-performance, perfect for professional-grade performance.",1202
+203,Books,333.08,4.5,"Our Books offers a informative experience with engaging insights. It's must-read and bestselling, ideal for any reader.",1203
+204,Beauty,175.48,1.7,"Our Beauty features luxurious ingredients and natural ingredients results. It's long-lasting and premium quality, ensuring a hypoallergenic glow.",1204
+205,Sports,300.73,1.4,"Achieve your best with our lightweight and durable Sports. It's high-performance and comfortable, perfect for professional-grade performance.",1205
+206,Beauty,336.03,3.9,"Experience premium quality and natural ingredients care with our Beauty. It's long-lasting and luxurious, perfect for a hypoallergenic routine.",1206
+207,Books,470.84,4.4,"Our Books offers a classic experience with bestselling insights. It's engaging and informative, ideal for any reader.",1207
+208,Home,293.02,2.8,"Our Home is functional and modern, designed for cozy use. It's elegant and durable, adding a touch of elegance to your home.",1208
+209,Electronics,438.04,2.9,"This Electronics item features compact design and durable functionality. It's latest technology and high-performance, perfect for everyday use.",1209
+210,Home,35.83,4.7,"Our Home is cozy and durable, designed for elegant use. It's functional and modern, adding a touch of elegance to your home.",1210
+211,Electronics,349.52,3.8,"Experience the user-friendly of our Electronics with this high-performance product. It's durable and latest technology, ensuring high performance.",1211
+212,Home,393.55,4.6,"Enhance your living space with our elegant and cozy Home. It's modern and functional, perfect for any home.",1212
+213,Clothing,203.82,4.8,"Our Clothing is versatile and breathable, perfect for stylish wear. It's trendy and comfortable, making it a staple in any wardrobe.",1213
+214,Electronics,23.24,1.1,"This Electronics item features high-performance design and latest technology functionality. It's durable and user-friendly, perfect for everyday use.",1214
+215,Home,171.92,2.5,"Our Home is cozy and functional, designed for durable use. It's modern and elegant, adding a touch of elegance to your home.",1215
+216,Books,375.81,1.5,"Our Books offers a must-read experience with engaging insights. It's informative and bestselling, ideal for any reader.",1216
+217,Sports,149.44,2.3,"This Sports is lightweight and professional-grade, designed for high-performance activities. It's durable and comfortable, ideal for any sports enthusiast.",1217
+218,Home,358.44,2.8,"Our Home is modern and functional, designed for elegant use. It's cozy and durable, adding a touch of elegance to your home.",1218
+219,Home,68.41,4.6,"Our Home is functional and durable, designed for elegant use. It's modern and cozy, adding a touch of elegance to your home.",1219
+220,Beauty,375.23,4.2,"Experience long-lasting and luxurious care with our Beauty. It's natural ingredients and premium quality, perfect for a hypoallergenic routine.",1220
+221,Sports,322.83,1.4,"This Sports is high-performance and lightweight, designed for professional-grade activities. It's durable and comfortable, ideal for any sports enthusiast.",1221
+222,Books,398.47,4.1,"Dive into this Books with our bestselling and engaging read. It's classic and informative, a must-read addition to any collection.",1222
+223,Sports,98.13,4.5,"Achieve your best with our high-performance and durable Sports. It's lightweight and comfortable, perfect for professional-grade performance.",1223
+224,Electronics,221.56,2.8,"Experience the latest technology of our Electronics with this high-performance product. It's durable and compact, ensuring high performance.",1224
+225,Clothing,73.85,3.2,"Our Clothing is breathable and trendy, perfect for comfortable wear. It's versatile and stylish, making it a staple in any wardrobe.",1225
+226,Sports,82.45,3.6,"Achieve your best with our high-performance and lightweight Sports. It's comfortable and durable, perfect for professional-grade performance.",1226
+227,Sports,285.94,3.3,"Achieve your best with our comfortable and professional-grade Sports. It's high-performance and durable, perfect for lightweight performance.",1227
+228,Home,385.62,2.1,"Enhance your living space with our modern and functional Home. It's cozy and elegant, perfect for any home.",1228
+229,Clothing,167.1,3.5,"Our Clothing is comfortable and trendy, perfect for breathable wear. It's versatile and stylish, making it a staple in any wardrobe.",1229
+230,Electronics,464.77,1.7,"Experience the user-friendly of our Electronics with this latest technology product. It's compact and durable, ensuring high performance.",1230
+231,Beauty,22.53,1.3,"Our Beauty features natural ingredients ingredients and luxurious results. It's hypoallergenic and long-lasting, ensuring a premium quality glow.",1231
+232,Clothing,123.71,4.1,"This Clothing combines trendy style with breathable comfort. It's stylish and comfortable, suitable for all occasions.",1232
+233,Home,441.86,3.0,"Enhance your living space with our durable and cozy Home. It's functional and modern, perfect for any home.",1233
+234,Sports,384.69,2.4,"Achieve your best with our high-performance and lightweight Sports. It's professional-grade and comfortable, perfect for durable performance.",1234
+235,Clothing,449.0,4.2,"This Clothing combines comfortable style with versatile comfort. It's trendy and stylish, suitable for all occasions.",1235
+236,Beauty,426.63,4.8,"Our Beauty features hypoallergenic ingredients and long-lasting results. It's premium quality and natural ingredients, ensuring a luxurious glow.",1236
+237,Clothing,290.58,2.5,"This Clothing combines trendy style with stylish comfort. It's comfortable and versatile, suitable for all occasions.",1237
+238,Clothing,63.56,3.0,"This Clothing combines breathable style with versatile comfort. It's stylish and trendy, suitable for all occasions.",1238
+239,Books,189.04,4.1,"Dive into this Books with our must-read and classic read. It's bestselling and engaging, a informative addition to any collection.",1239
+240,Home,469.0,3.6,"Enhance your living space with our modern and cozy Home. It's elegant and functional, perfect for any home.",1240
+241,Home,32.85,3.0,"Enhance your living space with our functional and cozy Home. It's durable and elegant, perfect for any home.",1241
+242,Electronics,82.53,4.3,"Experience the user-friendly of our Electronics with this latest technology product. It's high-performance and durable, ensuring high performance.",1242
+243,Sports,434.76,1.3,"Achieve your best with our durable and comfortable Sports. It's high-performance and professional-grade, perfect for lightweight performance.",1243
+244,Home,441.23,3.5,"Our Home is cozy and modern, designed for durable use. It's functional and elegant, adding a touch of elegance to your home.",1244
+245,Home,166.91,3.6,"Our Home is elegant and functional, designed for cozy use. It's durable and modern, adding a touch of elegance to your home.",1245
+246,Beauty,169.28,3.3,"Our Beauty features hypoallergenic ingredients and luxurious results. It's premium quality and long-lasting, ensuring a natural ingredients glow.",1246
+247,Electronics,467.67,2.7,"Experience the compact of our Electronics with this latest technology product. It's durable and user-friendly, ensuring high performance.",1247
+248,Electronics,277.69,4.7,"This Electronics item features compact design and durable functionality. It's user-friendly and latest technology, perfect for everyday use.",1248
+249,Beauty,308.37,4.8,"Our Beauty features natural ingredients ingredients and premium quality results. It's luxurious and hypoallergenic, ensuring a long-lasting glow.",1249
+250,Clothing,233.32,1.3,"Our Clothing is stylish and comfortable, perfect for versatile wear. It's breathable and trendy, making it a staple in any wardrobe.",1250
+251,Home,202.87,3.2,"Our Home is cozy and elegant, designed for functional use. It's durable and modern, adding a touch of elegance to your home.",1251
+252,Sports,59.24,1.9,"Achieve your best with our comfortable and durable Sports. It's professional-grade and high-performance, perfect for lightweight performance.",1252
+253,Electronics,333.32,4.9,"This Electronics item features compact design and durable functionality. It's user-friendly and latest technology, perfect for everyday use.",1253
+254,Electronics,311.67,1.8,"This Electronics item features durable design and latest technology functionality. It's user-friendly and high-performance, perfect for everyday use.",1254
+255,Home,255.02,4.9,"Our Home is functional and elegant, designed for modern use. It's durable and cozy, adding a touch of elegance to your home.",1255
+256,Electronics,161.35,2.7,"Experience the user-friendly of our Electronics with this latest technology product. It's compact and high-performance, ensuring high performance.",1256
+257,Sports,373.61,1.7,"Achieve your best with our durable and high-performance Sports. It's comfortable and professional-grade, perfect for lightweight performance.",1257
+258,Home,17.47,3.5,"Our Home is functional and cozy, designed for durable use. It's elegant and modern, adding a touch of elegance to your home.",1258
+259,Sports,40.08,3.3,"This Sports is professional-grade and high-performance, designed for lightweight activities. It's comfortable and durable, ideal for any sports enthusiast.",1259
+260,Electronics,150.07,2.4,"This Electronics item features user-friendly design and high-performance functionality. It's durable and latest technology, perfect for everyday use.",1260
+261,Electronics,251.5,3.2,"Experience the user-friendly of our Electronics with this latest technology product. It's compact and durable, ensuring high performance.",1261
+262,Electronics,499.36,1.1,"This Electronics item features durable design and compact functionality. It's latest technology and high-performance, perfect for everyday use.",1262
+263,Beauty,423.85,3.3,"Our Beauty features long-lasting ingredients and natural ingredients results. It's luxurious and premium quality, ensuring a hypoallergenic glow.",1263
+264,Clothing,375.84,3.9,"Our Clothing is versatile and stylish, perfect for trendy wear. It's comfortable and breathable, making it a staple in any wardrobe.",1264
+265,Books,42.37,3.7,"Our Books offers a bestselling experience with engaging insights. It's classic and informative, ideal for any reader.",1265
+266,Home,66.35,2.6,"Our Home is cozy and durable, designed for functional use. It's modern and elegant, adding a touch of elegance to your home.",1266
+267,Sports,360.72,1.2,"This Sports is professional-grade and durable, designed for lightweight activities. It's high-performance and comfortable, ideal for any sports enthusiast.",1267
+268,Home,267.67,3.5,"Our Home is elegant and functional, designed for cozy use. It's modern and durable, adding a touch of elegance to your home.",1268
+269,Books,414.09,3.3,"Our Books offers a informative experience with must-read insights. It's classic and engaging, ideal for any reader.",1269
+270,Beauty,226.05,4.2,"Our Beauty features premium quality ingredients and hypoallergenic results. It's luxurious and long-lasting, ensuring a natural ingredients glow.",1270
+271,Beauty,422.41,3.3,"Our Beauty features hypoallergenic ingredients and luxurious results. It's natural ingredients and long-lasting, ensuring a premium quality glow.",1271
+272,Home,437.43,3.2,"Enhance your living space with our elegant and durable Home. It's cozy and functional, perfect for any home.",1272
+273,Clothing,391.64,2.7,"This Clothing combines versatile style with stylish comfort. It's breathable and comfortable, suitable for all occasions.",1273
+274,Electronics,91.18,4.3,"This Electronics item features compact design and durable functionality. It's latest technology and high-performance, perfect for everyday use.",1274
+275,Home,25.51,2.7,"Our Home is durable and cozy, designed for modern use. It's elegant and functional, adding a touch of elegance to your home.",1275
+276,Books,288.12,1.9,"Dive into this Books with our classic and informative read. It's bestselling and must-read, a engaging addition to any collection.",1276
+277,Sports,435.82,3.8,"Achieve your best with our comfortable and lightweight Sports. It's high-performance and durable, perfect for professional-grade performance.",1277
+278,Electronics,161.73,2.8,"Experience the latest technology of our Electronics with this compact product. It's durable and high-performance, ensuring high performance.",1278
+279,Clothing,359.15,4.9,"This Clothing combines stylish style with comfortable comfort. It's breathable and versatile, suitable for all occasions.",1279
+280,Clothing,323.48,2.9,"This Clothing combines comfortable style with stylish comfort. It's breathable and versatile, suitable for all occasions.",1280
+281,Beauty,477.54,3.8,"Our Beauty features premium quality ingredients and luxurious results. It's long-lasting and hypoallergenic, ensuring a natural ingredients glow.",1281
+282,Clothing,183.54,3.8,"Our Clothing is stylish and breathable, perfect for comfortable wear. It's versatile and trendy, making it a staple in any wardrobe.",1282
+283,Electronics,404.63,3.8,"This Electronics item features durable design and latest technology functionality. It's compact and user-friendly, perfect for everyday use.",1283
+284,Clothing,188.74,2.6,"This Clothing combines trendy style with comfortable comfort. It's versatile and breathable, suitable for all occasions.",1284
+285,Home,226.03,1.5,"Our Home is elegant and functional, designed for durable use. It's modern and cozy, adding a touch of elegance to your home.",1285
+286,Books,96.69,3.8,"Our Books offers a informative experience with bestselling insights. It's engaging and must-read, ideal for any reader.",1286
+287,Beauty,488.7,2.8,"Our Beauty features natural ingredients ingredients and long-lasting results. It's premium quality and luxurious, ensuring a hypoallergenic glow.",1287
+288,Sports,445.94,4.1,"This Sports is durable and lightweight, designed for high-performance activities. It's professional-grade and comfortable, ideal for any sports enthusiast.",1288
+289,Books,472.45,2.2,"Our Books offers a engaging experience with bestselling insights. It's must-read and classic, ideal for any reader.",1289
+290,Home,477.93,1.9,"Enhance your living space with our functional and elegant Home. It's modern and durable, perfect for any home.",1290
+291,Books,168.04,1.6,"Dive into this Books with our must-read and bestselling read. It's informative and engaging, a classic addition to any collection.",1291
+292,Books,206.13,3.8,"Our Books offers a bestselling experience with informative insights. It's must-read and engaging, ideal for any reader.",1292
+293,Home,69.92,1.7,"Our Home is elegant and cozy, designed for durable use. It's functional and modern, adding a touch of elegance to your home.",1293
+294,Sports,401.51,3.0,"Achieve your best with our lightweight and professional-grade Sports. It's comfortable and high-performance, perfect for durable performance.",1294
+295,Clothing,314.31,2.5,"Our Clothing is comfortable and breathable, perfect for trendy wear. It's stylish and versatile, making it a staple in any wardrobe.",1295
+296,Clothing,281.82,2.4,"Our Clothing is breathable and stylish, perfect for trendy wear. It's comfortable and versatile, making it a staple in any wardrobe.",1296
+297,Electronics,145.72,2.0,"This Electronics item features durable design and latest technology functionality. It's high-performance and user-friendly, perfect for everyday use.",1297
+298,Clothing,460.52,2.4,"Our Clothing is versatile and trendy, perfect for breathable wear. It's comfortable and stylish, making it a staple in any wardrobe.",1298
+299,Books,18.88,3.1,"Our Books offers a classic experience with must-read insights. It's bestselling and engaging, ideal for any reader.",1299
+300,Beauty,275.72,1.4,"Our Beauty features luxurious ingredients and hypoallergenic results. It's natural ingredients and premium quality, ensuring a long-lasting glow.",1300
+301,Books,141.35,4.1,"Dive into this Books with our bestselling and must-read read. It's classic and informative, a engaging addition to any collection.",1301
+302,Home,239.21,3.1,"Enhance your living space with our functional and elegant Home. It's cozy and durable, perfect for any home.",1302
+303,Books,157.28,1.9,"Dive into this Books with our classic and engaging read. It's must-read and informative, a bestselling addition to any collection.",1303
+304,Sports,116.77,3.9,"This Sports is professional-grade and durable, designed for lightweight activities. It's comfortable and high-performance, ideal for any sports enthusiast.",1304
+305,Home,445.01,3.8,"Enhance your living space with our modern and elegant Home. It's durable and cozy, perfect for any home.",1305
+306,Clothing,47.24,3.3,"Our Clothing is versatile and trendy, perfect for comfortable wear. It's breathable and stylish, making it a staple in any wardrobe.",1306
+307,Beauty,130.18,2.3,"Experience premium quality and hypoallergenic care with our Beauty. It's natural ingredients and long-lasting, perfect for a luxurious routine.",1307
+308,Clothing,339.0,1.7,"This Clothing combines breathable style with stylish comfort. It's trendy and comfortable, suitable for all occasions.",1308
+309,Beauty,276.29,2.0,"Our Beauty features natural ingredients ingredients and luxurious results. It's long-lasting and hypoallergenic, ensuring a premium quality glow.",1309
+310,Beauty,312.79,2.5,"Our Beauty features long-lasting ingredients and hypoallergenic results. It's premium quality and natural ingredients, ensuring a luxurious glow.",1310
+311,Books,221.03,3.3,"Dive into this Books with our must-read and classic read. It's engaging and informative, a bestselling addition to any collection.",1311
+312,Books,92.15,4.5,"Dive into this Books with our engaging and informative read. It's classic and must-read, a bestselling addition to any collection.",1312
+313,Sports,312.0,1.9,"This Sports is lightweight and professional-grade, designed for durable activities. It's comfortable and high-performance, ideal for any sports enthusiast.",1313
+314,Electronics,144.03,1.8,"Experience the durable of our Electronics with this compact product. It's latest technology and user-friendly, ensuring high performance.",1314
+315,Clothing,340.79,2.7,"This Clothing combines comfortable style with versatile comfort. It's breathable and trendy, suitable for all occasions.",1315
+316,Books,433.19,2.5,"Our Books offers a must-read experience with classic insights. It's bestselling and engaging, ideal for any reader.",1316
+317,Electronics,119.52,4.3,"Experience the compact of our Electronics with this durable product. It's high-performance and user-friendly, ensuring high performance.",1317
+318,Books,46.24,1.5,"Our Books offers a classic experience with bestselling insights. It's must-read and informative, ideal for any reader.",1318
+319,Clothing,255.09,3.6,"This Clothing combines trendy style with versatile comfort. It's comfortable and stylish, suitable for all occasions.",1319
+320,Sports,314.71,3.9,"This Sports is lightweight and durable, designed for professional-grade activities. It's high-performance and comfortable, ideal for any sports enthusiast.",1320
+321,Books,302.0,4.1,"Dive into this Books with our informative and classic read. It's must-read and bestselling, a engaging addition to any collection.",1321
+322,Sports,53.6,2.3,"Achieve your best with our durable and high-performance Sports. It's lightweight and comfortable, perfect for professional-grade performance.",1322
+323,Electronics,112.09,2.6,"This Electronics item features user-friendly design and high-performance functionality. It's latest technology and durable, perfect for everyday use.",1323
+324,Clothing,441.89,4.7,"Our Clothing is versatile and comfortable, perfect for stylish wear. It's breathable and trendy, making it a staple in any wardrobe.",1324
+325,Sports,396.96,1.7,"This Sports is professional-grade and comfortable, designed for lightweight activities. It's durable and high-performance, ideal for any sports enthusiast.",1325
+326,Electronics,276.34,2.9,"Experience the high-performance of our Electronics with this user-friendly product. It's compact and latest technology, ensuring high performance.",1326
+327,Sports,18.33,3.5,"This Sports is durable and lightweight, designed for comfortable activities. It's professional-grade and high-performance, ideal for any sports enthusiast.",1327
+328,Electronics,12.65,2.9,"This Electronics item features latest technology design and high-performance functionality. It's compact and durable, perfect for everyday use.",1328
+329,Electronics,67.8,1.1,"This Electronics item features latest technology design and durable functionality. It's compact and user-friendly, perfect for everyday use.",1329
+330,Sports,204.88,1.8,"Achieve your best with our durable and lightweight Sports. It's professional-grade and high-performance, perfect for comfortable performance.",1330
+331,Home,487.34,1.5,"Our Home is durable and elegant, designed for modern use. It's cozy and functional, adding a touch of elegance to your home.",1331
+332,Home,93.33,4.1,"Our Home is functional and durable, designed for elegant use. It's modern and cozy, adding a touch of elegance to your home.",1332
+333,Books,349.17,4.3,"Dive into this Books with our classic and must-read read. It's informative and engaging, a bestselling addition to any collection.",1333
+334,Electronics,71.6,4.5,"This Electronics item features latest technology design and compact functionality. It's durable and high-performance, perfect for everyday use.",1334
+335,Home,235.94,3.9,"Enhance your living space with our modern and cozy Home. It's functional and durable, perfect for any home.",1335
+336,Sports,116.79,1.6,"This Sports is professional-grade and comfortable, designed for lightweight activities. It's durable and high-performance, ideal for any sports enthusiast.",1336
+337,Books,227.88,5.0,"Dive into this Books with our classic and engaging read. It's must-read and informative, a bestselling addition to any collection.",1337
+338,Clothing,182.84,1.0,"This Clothing combines stylish style with breathable comfort. It's comfortable and trendy, suitable for all occasions.",1338
+339,Beauty,408.94,1.8,"Experience premium quality and luxurious care with our Beauty. It's natural ingredients and hypoallergenic, perfect for a long-lasting routine.",1339
+340,Clothing,223.74,3.9,"This Clothing combines trendy style with versatile comfort. It's stylish and comfortable, suitable for all occasions.",1340
+341,Beauty,257.24,3.8,"Our Beauty features long-lasting ingredients and natural ingredients results. It's luxurious and hypoallergenic, ensuring a premium quality glow.",1341
+342,Sports,404.14,1.5,"Achieve your best with our high-performance and lightweight Sports. It's durable and professional-grade, perfect for comfortable performance.",1342
+343,Books,427.45,1.8,"Our Books offers a classic experience with informative insights. It's engaging and bestselling, ideal for any reader.",1343
+344,Home,152.61,4.3,"Our Home is functional and elegant, designed for durable use. It's cozy and modern, adding a touch of elegance to your home.",1344
+345,Beauty,361.05,3.0,"Our Beauty features natural ingredients ingredients and long-lasting results. It's premium quality and luxurious, ensuring a hypoallergenic glow.",1345
+346,Electronics,491.86,4.7,"This Electronics item features compact design and high-performance functionality. It's latest technology and durable, perfect for everyday use.",1346
+347,Electronics,432.76,2.4,"This Electronics item features high-performance design and user-friendly functionality. It's compact and durable, perfect for everyday use.",1347
+348,Electronics,306.88,2.3,"Experience the durable of our Electronics with this high-performance product. It's compact and user-friendly, ensuring high performance.",1348
+349,Books,108.84,4.3,"Dive into this Books with our must-read and classic read. It's bestselling and informative, a engaging addition to any collection.",1349
+350,Books,283.89,4.8,"Our Books offers a engaging experience with must-read insights. It's informative and bestselling, ideal for any reader.",1350
+351,Sports,231.64,2.9,"This Sports is high-performance and lightweight, designed for professional-grade activities. It's durable and comfortable, ideal for any sports enthusiast.",1351
+352,Sports,155.51,1.6,"This Sports is comfortable and high-performance, designed for durable activities. It's lightweight and professional-grade, ideal for any sports enthusiast.",1352
+353,Sports,473.09,1.4,"This Sports is comfortable and high-performance, designed for professional-grade activities. It's durable and lightweight, ideal for any sports enthusiast.",1353
+354,Electronics,264.45,4.1,"This Electronics item features latest technology design and durable functionality. It's high-performance and compact, perfect for everyday use.",1354
+355,Books,365.51,2.4,"Our Books offers a engaging experience with must-read insights. It's bestselling and informative, ideal for any reader.",1355
+356,Home,381.0,2.5,"Our Home is functional and cozy, designed for modern use. It's durable and elegant, adding a touch of elegance to your home.",1356
+357,Home,37.23,3.1,"Our Home is elegant and cozy, designed for modern use. It's functional and durable, adding a touch of elegance to your home.",1357
+358,Electronics,194.49,2.2,"Experience the high-performance of our Electronics with this user-friendly product. It's compact and durable, ensuring high performance.",1358
+359,Books,171.74,1.2,"Dive into this Books with our must-read and bestselling read. It's engaging and classic, a informative addition to any collection.",1359
+360,Beauty,85.36,2.5,"Experience hypoallergenic and long-lasting care with our Beauty. It's natural ingredients and luxurious, perfect for a premium quality routine.",1360
+361,Home,440.27,1.5,"Our Home is functional and modern, designed for cozy use. It's durable and elegant, adding a touch of elegance to your home.",1361
+362,Beauty,367.55,4.1,"Experience hypoallergenic and luxurious care with our Beauty. It's natural ingredients and long-lasting, perfect for a premium quality routine.",1362
+363,Electronics,410.92,2.4,"This Electronics item features latest technology design and high-performance functionality. It's compact and durable, perfect for everyday use.",1363
+364,Clothing,302.41,1.7,"This Clothing combines comfortable style with versatile comfort. It's breathable and trendy, suitable for all occasions.",1364
+365,Clothing,422.06,3.2,"This Clothing combines trendy style with breathable comfort. It's stylish and versatile, suitable for all occasions.",1365
+366,Books,298.05,4.4,"Dive into this Books with our informative and must-read read. It's classic and bestselling, a engaging addition to any collection.",1366
+367,Electronics,225.05,1.4,"Experience the user-friendly of our Electronics with this latest technology product. It's high-performance and durable, ensuring high performance.",1367
+368,Sports,297.55,4.0,"This Sports is professional-grade and high-performance, designed for lightweight activities. It's durable and comfortable, ideal for any sports enthusiast.",1368
+369,Clothing,77.88,3.3,"This Clothing combines breathable style with comfortable comfort. It's stylish and trendy, suitable for all occasions.",1369
+370,Home,499.2,1.1,"Enhance your living space with our functional and cozy Home. It's durable and modern, perfect for any home.",1370
+371,Sports,391.37,2.5,"This Sports is comfortable and professional-grade, designed for high-performance activities. It's durable and lightweight, ideal for any sports enthusiast.",1371
+372,Beauty,85.13,1.8,"Experience premium quality and hypoallergenic care with our Beauty. It's natural ingredients and long-lasting, perfect for a luxurious routine.",1372
+373,Clothing,300.55,4.8,"This Clothing combines comfortable style with stylish comfort. It's breathable and trendy, suitable for all occasions.",1373
+374,Books,195.67,3.8,"Dive into this Books with our must-read and classic read. It's bestselling and engaging, a informative addition to any collection.",1374
+375,Clothing,487.48,2.4,"Our Clothing is stylish and comfortable, perfect for trendy wear. It's versatile and breathable, making it a staple in any wardrobe.",1375
+376,Clothing,452.21,2.1,"This Clothing combines stylish style with comfortable comfort. It's breathable and trendy, suitable for all occasions.",1376
+377,Sports,58.41,4.8,"This Sports is professional-grade and comfortable, designed for high-performance activities. It's durable and lightweight, ideal for any sports enthusiast.",1377
+378,Clothing,203.8,4.9,"This Clothing combines breathable style with versatile comfort. It's comfortable and trendy, suitable for all occasions.",1378
+379,Sports,57.72,3.9,"This Sports is professional-grade and high-performance, designed for comfortable activities. It's lightweight and durable, ideal for any sports enthusiast.",1379
+380,Home,443.62,4.3,"Our Home is cozy and elegant, designed for functional use. It's modern and durable, adding a touch of elegance to your home.",1380
+381,Beauty,345.92,1.5,"Experience premium quality and hypoallergenic care with our Beauty. It's natural ingredients and luxurious, perfect for a long-lasting routine.",1381
+382,Beauty,321.25,1.4,"Experience luxurious and natural ingredients care with our Beauty. It's hypoallergenic and long-lasting, perfect for a premium quality routine.",1382
+383,Electronics,435.84,1.3,"This Electronics item features user-friendly design and high-performance functionality. It's latest technology and durable, perfect for everyday use.",1383
+384,Beauty,57.37,4.5,"Our Beauty features luxurious ingredients and premium quality results. It's natural ingredients and long-lasting, ensuring a hypoallergenic glow.",1384
+385,Books,59.09,1.9,"Dive into this Books with our bestselling and informative read. It's engaging and must-read, a classic addition to any collection.",1385
+386,Beauty,267.62,2.6,"Our Beauty features long-lasting ingredients and luxurious results. It's natural ingredients and premium quality, ensuring a hypoallergenic glow.",1386
+387,Books,243.57,4.7,"Our Books offers a must-read experience with classic insights. It's informative and engaging, ideal for any reader.",1387
+388,Clothing,180.25,1.1,"This Clothing combines stylish style with versatile comfort. It's breathable and comfortable, suitable for all occasions.",1388
+389,Beauty,220.89,4.7,"Our Beauty features premium quality ingredients and hypoallergenic results. It's long-lasting and luxurious, ensuring a natural ingredients glow.",1389
+390,Electronics,115.08,2.4,"This Electronics item features durable design and latest technology functionality. It's user-friendly and compact, perfect for everyday use.",1390
+391,Sports,16.19,4.3,"This Sports is lightweight and professional-grade, designed for high-performance activities. It's durable and comfortable, ideal for any sports enthusiast.",1391
+392,Beauty,387.44,3.0,"Experience luxurious and premium quality care with our Beauty. It's hypoallergenic and long-lasting, perfect for a natural ingredients routine.",1392
+393,Home,365.62,3.5,"Enhance your living space with our functional and durable Home. It's modern and elegant, perfect for any home.",1393
+394,Beauty,138.6,4.2,"Experience hypoallergenic and long-lasting care with our Beauty. It's natural ingredients and premium quality, perfect for a luxurious routine.",1394
+395,Electronics,228.91,1.6,"This Electronics item features latest technology design and durable functionality. It's compact and high-performance, perfect for everyday use.",1395
+396,Clothing,66.51,1.6,"This Clothing combines breathable style with stylish comfort. It's comfortable and trendy, suitable for all occasions.",1396
+397,Sports,256.12,2.5,"This Sports is professional-grade and durable, designed for lightweight activities. It's high-performance and comfortable, ideal for any sports enthusiast.",1397
+398,Beauty,377.32,1.5,"Experience long-lasting and luxurious care with our Beauty. It's natural ingredients and premium quality, perfect for a hypoallergenic routine.",1398
+399,Beauty,114.02,3.4,"Experience luxurious and premium quality care with our Beauty. It's natural ingredients and hypoallergenic, perfect for a long-lasting routine.",1399
+400,Electronics,301.26,3.7,"This Electronics item features user-friendly design and compact functionality. It's high-performance and durable, perfect for everyday use.",1400
+401,Books,497.44,4.5,"Our Books offers a classic experience with bestselling insights. It's must-read and informative, ideal for any reader.",1401
+402,Beauty,146.22,4.4,"Experience luxurious and long-lasting care with our Beauty. It's natural ingredients and hypoallergenic, perfect for a premium quality routine.",1402
+403,Sports,86.09,1.9,"This Sports is durable and lightweight, designed for professional-grade activities. It's comfortable and high-performance, ideal for any sports enthusiast.",1403
+404,Clothing,160.2,4.8,"Our Clothing is breathable and versatile, perfect for comfortable wear. It's trendy and stylish, making it a staple in any wardrobe.",1404
+405,Home,409.17,2.3,"Enhance your living space with our cozy and modern Home. It's functional and durable, perfect for any home.",1405
+406,Home,464.13,1.0,"Enhance your living space with our durable and cozy Home. It's modern and functional, perfect for any home.",1406
+407,Sports,249.98,1.5,"Achieve your best with our durable and lightweight Sports. It's high-performance and comfortable, perfect for professional-grade performance.",1407
+408,Sports,454.65,3.7,"Achieve your best with our lightweight and professional-grade Sports. It's high-performance and durable, perfect for comfortable performance.",1408
+409,Clothing,20.29,1.6,"This Clothing combines versatile style with comfortable comfort. It's breathable and stylish, suitable for all occasions.",1409
+410,Beauty,46.91,1.7,"Experience natural ingredients and long-lasting care with our Beauty. It's hypoallergenic and premium quality, perfect for a luxurious routine.",1410
+411,Sports,107.94,2.8,"This Sports is high-performance and durable, designed for lightweight activities. It's comfortable and professional-grade, ideal for any sports enthusiast.",1411
+412,Books,77.76,3.7,"Our Books offers a classic experience with informative insights. It's must-read and bestselling, ideal for any reader.",1412
+413,Books,360.15,4.4,"Dive into this Books with our informative and classic read. It's must-read and engaging, a bestselling addition to any collection.",1413
+414,Books,213.08,2.5,"Dive into this Books with our must-read and engaging read. It's informative and bestselling, a classic addition to any collection.",1414
+415,Sports,206.73,1.5,"This Sports is durable and lightweight, designed for professional-grade activities. It's high-performance and comfortable, ideal for any sports enthusiast.",1415
+416,Clothing,144.78,1.3,"This Clothing combines comfortable style with breathable comfort. It's trendy and versatile, suitable for all occasions.",1416
+417,Books,216.26,4.8,"Our Books offers a engaging experience with informative insights. It's bestselling and must-read, ideal for any reader.",1417
+418,Electronics,146.3,4.0,"Experience the user-friendly of our Electronics with this high-performance product. It's durable and latest technology, ensuring high performance.",1418
+419,Clothing,99.17,4.4,"This Clothing combines comfortable style with trendy comfort. It's stylish and versatile, suitable for all occasions.",1419
+420,Clothing,431.66,1.8,"Our Clothing is stylish and versatile, perfect for breathable wear. It's trendy and comfortable, making it a staple in any wardrobe.",1420
+421,Electronics,137.21,3.1,"This Electronics item features high-performance design and user-friendly functionality. It's durable and latest technology, perfect for everyday use.",1421
+422,Beauty,263.61,2.3,"Experience luxurious and premium quality care with our Beauty. It's natural ingredients and long-lasting, perfect for a hypoallergenic routine.",1422
+423,Electronics,421.81,3.9,"This Electronics item features durable design and latest technology functionality. It's high-performance and compact, perfect for everyday use.",1423
+424,Beauty,292.61,3.5,"Our Beauty features natural ingredients ingredients and premium quality results. It's hypoallergenic and long-lasting, ensuring a luxurious glow.",1424
+425,Books,323.13,2.6,"Our Books offers a bestselling experience with engaging insights. It's must-read and informative, ideal for any reader.",1425
+426,Home,187.79,2.9,"Our Home is cozy and modern, designed for durable use. It's elegant and functional, adding a touch of elegance to your home.",1426
+427,Books,29.04,4.2,"Dive into this Books with our informative and engaging read. It's classic and bestselling, a must-read addition to any collection.",1427
+428,Books,50.89,1.0,"Our Books offers a informative experience with engaging insights. It's classic and bestselling, ideal for any reader.",1428
+429,Beauty,415.9,2.2,"Experience hypoallergenic and luxurious care with our Beauty. It's premium quality and long-lasting, perfect for a natural ingredients routine.",1429
+430,Electronics,135.56,4.1,"Experience the high-performance of our Electronics with this user-friendly product. It's durable and compact, ensuring high performance.",1430
+431,Beauty,171.36,1.3,"Our Beauty features long-lasting ingredients and hypoallergenic results. It's natural ingredients and luxurious, ensuring a premium quality glow.",1431
+432,Beauty,480.0,2.6,"Our Beauty features hypoallergenic ingredients and premium quality results. It's long-lasting and luxurious, ensuring a natural ingredients glow.",1432
+433,Clothing,63.87,1.4,"This Clothing combines comfortable style with versatile comfort. It's breathable and trendy, suitable for all occasions.",1433
+434,Beauty,346.22,2.9,"Our Beauty features hypoallergenic ingredients and luxurious results. It's long-lasting and natural ingredients, ensuring a premium quality glow.",1434
+435,Sports,444.01,2.9,"This Sports is comfortable and lightweight, designed for durable activities. It's high-performance and professional-grade, ideal for any sports enthusiast.",1435
+436,Clothing,82.91,4.4,"Our Clothing is breathable and versatile, perfect for stylish wear. It's comfortable and trendy, making it a staple in any wardrobe.",1436
+437,Clothing,223.18,3.1,"Our Clothing is stylish and breathable, perfect for trendy wear. It's versatile and comfortable, making it a staple in any wardrobe.",1437
+438,Beauty,315.38,4.4,"Experience long-lasting and luxurious care with our Beauty. It's natural ingredients and premium quality, perfect for a hypoallergenic routine.",1438
+439,Home,189.35,4.3,"Enhance your living space with our elegant and functional Home. It's cozy and durable, perfect for any home.",1439
+440,Books,471.26,4.8,"Dive into this Books with our classic and must-read read. It's bestselling and informative, a engaging addition to any collection.",1440
+441,Home,380.51,1.8,"Our Home is modern and elegant, designed for functional use. It's cozy and durable, adding a touch of elegance to your home.",1441
+442,Home,55.32,2.4,"Enhance your living space with our functional and cozy Home. It's elegant and durable, perfect for any home.",1442
+443,Books,145.44,4.2,"Dive into this Books with our informative and must-read read. It's engaging and classic, a bestselling addition to any collection.",1443
+444,Books,23.74,1.3,"Our Books offers a informative experience with must-read insights. It's classic and bestselling, ideal for any reader.",1444
+445,Home,98.48,2.8,"Our Home is modern and elegant, designed for functional use. It's cozy and durable, adding a touch of elegance to your home.",1445
+446,Sports,326.72,3.9,"This Sports is high-performance and professional-grade, designed for lightweight activities. It's durable and comfortable, ideal for any sports enthusiast.",1446
+447,Home,206.69,4.4,"Our Home is cozy and durable, designed for elegant use. It's modern and functional, adding a touch of elegance to your home.",1447
+448,Beauty,59.73,2.5,"Our Beauty features long-lasting ingredients and hypoallergenic results. It's premium quality and luxurious, ensuring a natural ingredients glow.",1448
+449,Home,199.51,3.9,"Enhance your living space with our modern and functional Home. It's elegant and cozy, perfect for any home.",1449
+450,Beauty,32.2,4.7,"Experience hypoallergenic and natural ingredients care with our Beauty. It's long-lasting and luxurious, perfect for a premium quality routine.",1450
+451,Books,428.65,1.6,"Dive into this Books with our engaging and must-read read. It's bestselling and classic, a informative addition to any collection.",1451
+452,Clothing,73.9,1.2,"This Clothing combines comfortable style with stylish comfort. It's trendy and breathable, suitable for all occasions.",1452
+453,Books,227.92,2.2,"Our Books offers a bestselling experience with engaging insights. It's must-read and informative, ideal for any reader.",1453
+454,Sports,33.01,3.5,"Achieve your best with our durable and comfortable Sports. It's high-performance and professional-grade, perfect for lightweight performance.",1454
+455,Home,370.73,1.0,"Our Home is functional and modern, designed for cozy use. It's durable and elegant, adding a touch of elegance to your home.",1455
+456,Sports,35.9,3.0,"Achieve your best with our high-performance and durable Sports. It's lightweight and comfortable, perfect for professional-grade performance.",1456
+457,Clothing,84.14,1.6,"Our Clothing is trendy and breathable, perfect for comfortable wear. It's versatile and stylish, making it a staple in any wardrobe.",1457
+458,Sports,346.84,2.5,"This Sports is durable and comfortable, designed for high-performance activities. It's professional-grade and lightweight, ideal for any sports enthusiast.",1458
+459,Sports,406.63,2.4,"This Sports is professional-grade and durable, designed for lightweight activities. It's high-performance and comfortable, ideal for any sports enthusiast.",1459
+460,Clothing,421.47,2.9,"This Clothing combines versatile style with breathable comfort. It's stylish and comfortable, suitable for all occasions.",1460
+461,Sports,59.85,2.8,"This Sports is durable and comfortable, designed for lightweight activities. It's high-performance and professional-grade, ideal for any sports enthusiast.",1461
+462,Home,196.05,3.7,"Our Home is modern and cozy, designed for elegant use. It's functional and durable, adding a touch of elegance to your home.",1462
+463,Sports,385.58,4.4,"This Sports is durable and comfortable, designed for high-performance activities. It's professional-grade and lightweight, ideal for any sports enthusiast.",1463
+464,Home,495.01,3.8,"Enhance your living space with our durable and elegant Home. It's cozy and functional, perfect for any home.",1464
+465,Books,171.67,3.8,"Our Books offers a engaging experience with bestselling insights. It's classic and informative, ideal for any reader.",1465
+466,Electronics,332.62,3.5,"This Electronics item features high-performance design and latest technology functionality. It's compact and durable, perfect for everyday use.",1466
+467,Beauty,13.68,2.5,"Experience premium quality and luxurious care with our Beauty. It's natural ingredients and hypoallergenic, perfect for a long-lasting routine.",1467
+468,Home,365.54,3.4,"Our Home is durable and elegant, designed for functional use. It's cozy and modern, adding a touch of elegance to your home.",1468
+469,Electronics,216.99,1.9,"This Electronics item features user-friendly design and compact functionality. It's durable and latest technology, perfect for everyday use.",1469
+470,Clothing,423.14,3.5,"Our Clothing is versatile and stylish, perfect for trendy wear. It's comfortable and breathable, making it a staple in any wardrobe.",1470
+471,Electronics,53.0,3.7,"Experience the durable of our Electronics with this compact product. It's high-performance and user-friendly, ensuring high performance.",1471
+472,Books,439.51,2.8,"Dive into this Books with our bestselling and informative read. It's must-read and classic, a engaging addition to any collection.",1472
+473,Books,163.73,1.8,"Dive into this Books with our classic and informative read. It's bestselling and engaging, a must-read addition to any collection.",1473
+474,Beauty,155.58,4.2,"Our Beauty features hypoallergenic ingredients and luxurious results. It's natural ingredients and premium quality, ensuring a long-lasting glow.",1474
+475,Home,225.27,2.4,"Enhance your living space with our functional and modern Home. It's cozy and durable, perfect for any home.",1475
+476,Clothing,177.33,3.1,"Our Clothing is breathable and stylish, perfect for trendy wear. It's comfortable and versatile, making it a staple in any wardrobe.",1476
+477,Books,315.4,3.2,"Dive into this Books with our classic and informative read. It's engaging and must-read, a bestselling addition to any collection.",1477
+478,Sports,263.68,1.1,"Achieve your best with our professional-grade and durable Sports. It's lightweight and high-performance, perfect for comfortable performance.",1478
+479,Sports,272.93,4.2,"This Sports is lightweight and comfortable, designed for high-performance activities. It's professional-grade and durable, ideal for any sports enthusiast.",1479
+480,Clothing,219.64,4.6,"This Clothing combines comfortable style with trendy comfort. It's stylish and versatile, suitable for all occasions.",1480
+481,Beauty,254.01,3.9,"Experience luxurious and hypoallergenic care with our Beauty. It's premium quality and natural ingredients, perfect for a long-lasting routine.",1481
+482,Sports,349.91,3.8,"Achieve your best with our durable and comfortable Sports. It's professional-grade and lightweight, perfect for high-performance performance.",1482
+483,Electronics,436.21,4.4,"Experience the user-friendly of our Electronics with this latest technology product. It's durable and high-performance, ensuring high performance.",1483
+484,Beauty,56.03,3.1,"Experience premium quality and hypoallergenic care with our Beauty. It's luxurious and natural ingredients, perfect for a long-lasting routine.",1484
+485,Clothing,123.84,1.6,"Our Clothing is comfortable and breathable, perfect for trendy wear. It's versatile and stylish, making it a staple in any wardrobe.",1485
+486,Books,178.51,2.6,"Dive into this Books with our must-read and informative read. It's bestselling and classic, a engaging addition to any collection.",1486
+487,Clothing,279.07,4.0,"This Clothing combines breathable style with trendy comfort. It's comfortable and versatile, suitable for all occasions.",1487
+488,Sports,120.25,1.8,"Achieve your best with our high-performance and comfortable Sports. It's durable and professional-grade, perfect for lightweight performance.",1488
+489,Books,86.13,3.9,"Dive into this Books with our informative and engaging read. It's must-read and classic, a bestselling addition to any collection.",1489
+490,Home,312.93,1.4,"Enhance your living space with our cozy and modern Home. It's elegant and functional, perfect for any home.",1490
+491,Beauty,275.52,4.0,"Our Beauty features long-lasting ingredients and premium quality results. It's hypoallergenic and luxurious, ensuring a natural ingredients glow.",1491
+492,Books,216.23,1.2,"Our Books offers a classic experience with informative insights. It's engaging and bestselling, ideal for any reader.",1492
+493,Electronics,42.5,4.1,"This Electronics item features durable design and high-performance functionality. It's user-friendly and latest technology, perfect for everyday use.",1493
+494,Beauty,203.71,3.5,"Our Beauty features premium quality ingredients and luxurious results. It's hypoallergenic and long-lasting, ensuring a natural ingredients glow.",1494
+495,Books,195.09,2.3,"Our Books offers a classic experience with must-read insights. It's informative and engaging, ideal for any reader.",1495
+496,Sports,144.39,4.5,"This Sports is high-performance and lightweight, designed for professional-grade activities. It's durable and comfortable, ideal for any sports enthusiast.",1496
+497,Home,171.64,3.0,"Our Home is functional and elegant, designed for modern use. It's durable and cozy, adding a touch of elegance to your home.",1497
+498,Electronics,203.08,1.0,"This Electronics item features high-performance design and compact functionality. It's latest technology and durable, perfect for everyday use.",1498
+499,Clothing,320.38,4.2,"Our Clothing is trendy and stylish, perfect for breathable wear. It's comfortable and versatile, making it a staple in any wardrobe.",1499
+500,Beauty,150.93,2.0,"Our Beauty features luxurious ingredients and hypoallergenic results. It's natural ingredients and long-lasting, ensuring a premium quality glow.",1500
