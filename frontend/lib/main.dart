@@ -1,3 +1,5 @@
+// import 'dart:js';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,11 +10,38 @@ import 'package:swipeshop_frontend/Search/search.dart';
 import 'package:swipeshop_frontend/test/test.dart';
 import 'firebase_options.dart';
 import 'package:swipeshop_frontend/Home/newHome.dart';
+import 'package:swipeshop_frontend/signIn/authgate.dart';
+import 'package:swipeshop_frontend/signIn/authwrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(MaterialApp(initialRoute: '/wrapper', routes: {
+    '/': (context) => const MyApp(),
+    '/wrapper': (context) => const LoginMaybe(),
+    '/home': (context) => const Home(),
+    // '/challenges': (context) => const Challenges(),
+    // '/forum': (context) => const Forum(),
+    '/signIn': (context) => AuthGate(),
+    // '/user_profile': (context) => UserProfilePage()
+  }));
+}
+
+
+class LoginMaybe extends StatelessWidget {
+  const LoginMaybe({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: AuthWrapper(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
