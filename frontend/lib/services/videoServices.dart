@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swipeshop_frontend/modal/video.dart';
+import 'package:swipeshop_frontend/modal/comments.dart';
 
 Future<void> addToFirestore(Video video) async {
   try {
@@ -206,3 +207,42 @@ Future<void> commentVideo(String videoId, String userId,String content) async {
   }
 }
 
+Future<List<Comment>> getVideoComments(String videoId) async {
+  try {
+    var commentsQuerySnapshot = await FirebaseFirestore.instance
+        .collection('Comments')
+        .where('videoID', isEqualTo: videoId) 
+        .get();
+        // print(commentsQuerySnapshot.docs);
+        List<Comment> comments = commentsQuerySnapshot.docs.map((doc) {
+        return Comment(
+          videoId: doc['videoID'],
+          userId: doc['userID'],
+          content: doc['content'],
+          timestamp: doc['timestamp'].toDate(),
+      );
+    }).toList();
+    return comments;
+  } catch (e) {
+    print('Error fetching videos: $e');
+    return [];
+  }
+}
+
+Future<String> getUserName(String userId) async {
+  try{
+      var userQuerySnapshot = await FirebaseFirestore.instance
+      .collection('Users')
+      .doc(userId)
+      .get();
+      if (userQuerySnapshot.exists) {
+      return userQuerySnapshot.data()?['name'];
+    } else {
+      print('User document does not exist');
+      return 'null';
+      }
+  } catch(e){
+    print('Error fetching comments: $e');
+    return 'Null';
+  }
+}
