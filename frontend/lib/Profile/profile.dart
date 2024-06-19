@@ -99,6 +99,13 @@ class _ProfileState extends State<Profile> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
+              Text(
+                widget.current.email,
+                style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
