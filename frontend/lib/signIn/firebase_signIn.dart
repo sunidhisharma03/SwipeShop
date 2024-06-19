@@ -26,6 +26,7 @@ class Firebase {
           'likedVideos': lVids,
           'sharedVideos': sVids,
           'url': url,
+          'isMerchant':false,
         });
       }
       return 'success'; // Registration successful, no error message

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipeshop_frontend/Profile/merchantStatistics.dart';
+import 'package:swipeshop_frontend/modal/user.dart';
+import 'package:swipeshop_frontend/signIn/firebase_signIn.dart';
 
 class Profile extends StatelessWidget {
-  final bool isMerchant;
-  const Profile({Key? key, required this.isMerchant}) : super(key: key);
-
+  final Users current;
+  const Profile({Key? key, required this.current}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
-    final String name = 'John Doe'; // Example name
-    final String profilePictureUrl =
-        'https://www.example.com/profile.jpg'; // Example profile picture URL
-    final String location = 'New York, NY'; // Example location
+    final Firebase _firebase = Firebase();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -47,26 +46,26 @@ class Profile extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              isMerchant ? SizedBox(height: 80) : SizedBox(height: 0),
+              current.isMerchant ? SizedBox(height: 80) : SizedBox(height: 0),
               CircleAvatar(
                 radius: 50,
-                backgroundImage: NetworkImage(profilePictureUrl),
+                backgroundImage: current.url.isNotEmpty? NetworkImage(current.url): NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH4skylfJs-mOf6lz4pGDuTMvX6zqPc4LppQ&s'),
               ),
               SizedBox(height: 20),
               Text(
-                name,
+                current.name,
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               ),
-              SizedBox(height: 10),
-              Text(
-                location,
-                style: TextStyle(fontSize: 18, color: Colors.white70),
-              ),
+              // SizedBox(height: 10),
+              // Text(
+              //   location,
+              //   style: TextStyle(fontSize: 18, color: Colors.white70),
+              // ),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                if (isMerchant) ...[
+                if (current.isMerchant) ...[
                   Container(
                       child: ElevatedButton(
                           onPressed: () {
@@ -90,12 +89,20 @@ class Profile extends StatelessWidget {
                   ),
                   Container(
                       child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      var check = _firebase.logout();
+                      if(check == 'success'){
+                        Navigator.pushNamed(context, '/wrapper');
+                      }
+                      else{
+                        print(check);
+                      }
+                    },
                     child: Text("Logout"),
                   )),
                 ],
               ]),
-              if (isMerchant) ...[
+              if (current.isMerchant) ...[
                 SizedBox(height: 20),
                 Text(
                   'Videos',

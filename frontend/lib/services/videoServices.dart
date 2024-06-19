@@ -249,25 +249,29 @@ Future<String> getUserName(String userId) async {
   }
 }
 
-Future<Users?> getUser(String userId) async {
+Future<Users> getUser(String userId) async {
   try{
       var userQuerySnapshot = await FirebaseFirestore.instance
       .collection('Users')
       .doc(userId)
       .get();
       if (userQuerySnapshot.exists) {
-      return Users(
+        print(userQuerySnapshot.data()?['email']);
+        print(userQuerySnapshot.data()?['name']);
+        Users returnVar = Users(
         email: userQuerySnapshot.data()?['email'],
         name: userQuerySnapshot.data()?['name'],
         url: userQuerySnapshot.data()?['url'],
         likedVideos: userQuerySnapshot.data()?['likedVideos'],
+        isMerchant: userQuerySnapshot.data()?['isMerchant'],
       );
+      return returnVar;
     } else {
       print('User document does not exist');
-      return null;
+      return Users(email: '', likedVideos: [], name: '', url: '', isMerchant: false);
       }
   } catch(e){
-    print('Error fetching comments: $e');
-    return null;
+    print('Error fetching users: $e');
+    return Users(email: '', likedVideos: [], name: '', url: '', isMerchant: false);
   }
 }

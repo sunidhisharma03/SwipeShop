@@ -9,6 +9,7 @@ import 'package:swipeshop_frontend/Home/home.dart';
 import 'package:swipeshop_frontend/Inbox/inbox.dart';
 import 'package:swipeshop_frontend/Profile/profile.dart';
 import 'package:swipeshop_frontend/Search/search.dart';
+import 'package:swipeshop_frontend/services/videoServices.dart';
 import 'firebase_options.dart';
 import 'package:swipeshop_frontend/Home/newHome.dart';
 import 'package:swipeshop_frontend/signIn/authgate.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
 
 class IndexPage extends StatefulWidget {
   const IndexPage({Key? key});
+  
 
   @override
   State<IndexPage> createState() => _IndexPageState();
@@ -71,11 +73,13 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   int _selectedIndex = 1;
   late PageController _pageController;
+   late Users currentUser;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _selectedIndex);
+    _getUserDetails();
   }
 
   @override
@@ -95,19 +99,15 @@ class _IndexPageState extends State<IndexPage> {
     });
   }
 
-  void _navigateToProfile() {
-    var userId = FirebaseAuth.instance.currentUser!.uid;
-    
-    Navigator.pushNamed(
-      context,
-      '/profile', // Route name for Profile screen
-      arguments: {
-        'name': 'John Doe',
-        'profilePictureUrl':
-            'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png',
-        'location': 'New York, NY',
-      },
-    );
+  Future<void> _getUserDetails() async {
+      var userId = FirebaseAuth.instance.currentUser!.uid;
+      Users current;
+      current = await getUser(userId);
+      setState(() {
+        currentUser = current;
+        print(currentUser.name);
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      });
   }
 
   @override
@@ -133,7 +133,7 @@ class _IndexPageState extends State<IndexPage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => Profile(
-                          isMerchant: true,
+                          current: currentUser,
                         )));
             // Handle profile icon press (e.g., navigate to profile screen)
           },

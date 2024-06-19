@@ -1,12 +1,13 @@
 class Users{
   final String email;
-  final List<String> likedVideos;
+  final List<dynamic> likedVideos;
   final String name;
-  String? url;
+  final String url;
+  final bool isMerchant;
   Users({
     required this.email,
     required this.likedVideos,
-    required this.name, required url,
+    required this.name, required this.url, required this.isMerchant,
   });
 
 factory Users.fromJson(Map<String, dynamic> json) {
@@ -15,6 +16,7 @@ factory Users.fromJson(Map<String, dynamic> json) {
       likedVideos: json['likedVideos'],
       name: json['name'],
       url: json['url'],
+      isMerchant: json['isMerchant'],
     );
 }
 
@@ -24,6 +26,7 @@ Map<String, dynamic> toJson() {
       'likedVideos': likedVideos,
       'name': name,
       'url': url,
+      'isMerchant': isMerchant,
     };
   }
 }
