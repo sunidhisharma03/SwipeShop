@@ -8,9 +8,7 @@ import 'package:swipeshop_frontend/modal/user.dart';
 
 Future<void> addToFirestore(Video video) async {
   try {
-    await FirebaseFirestore.instance
-        .collection('Videos')
-        .add(video.toJson());
+    await FirebaseFirestore.instance.collection('Videos').add(video.toJson());
     print('Video added to Firestore successfully');
   } catch (error) {
     print('Error adding Video to Firestore: $error');
@@ -54,21 +52,21 @@ Future<Map<String, List<Video>>> getFromFireStore() async {
         challengeMap[userName] = [challenge];
       }
     }
-print(challengeMap);
+    print(challengeMap);
     return challengeMap;
   } catch (e) {
     print('Error fetching videos: $e');
     return {};
   }
-  
 }
+
 Future<Map<String, List<Video>>> getUsersVideo(String userId) async {
   try {
     var challengeQuerySnapshot = await FirebaseFirestore.instance
         .collection('Videos')
         .where('ownerID', isEqualTo: userId) // Filter challenges by userId
         .get();
-        print(challengeQuerySnapshot.docs);
+    print(challengeQuerySnapshot.docs);
     Map<String, List<Video>> challengeMap = {};
     List<Video> challenge = [];
     for (var challengeDoc in challengeQuerySnapshot.docs) {
@@ -78,7 +76,7 @@ Future<Map<String, List<Video>>> getUsersVideo(String userId) async {
           .get();
 
       var userName = userDoc['name'];
-       challenge.add(Video(
+      challenge.add(Video(
         title: challengeDoc['title'],
         ownerID: challengeDoc['ownerID'],
         timestamp: DateTime.parse(challengeDoc['timestamp']),
@@ -92,19 +90,19 @@ Future<Map<String, List<Video>>> getUsersVideo(String userId) async {
       // Add the challenge to the map with user name as key
       challengeMap[userName] = challenge;
     }
-    
+
     return challengeMap;
   } catch (e) {
     print('Error fetching videos: $e');
     return {};
   }
-
 }
 
 Future<void> likeVideo(String videoId, String userId) async {
   try {
     // Get a reference to the video document
-    var videoDocRef = FirebaseFirestore.instance.collection('Videos').doc(videoId);
+    var videoDocRef =
+        FirebaseFirestore.instance.collection('Videos').doc(videoId);
 
     // Start a Firestore transaction
     await FirebaseFirestore.instance.runTransaction((transaction) async {
@@ -142,7 +140,8 @@ Future<void> likeVideo(String videoId, String userId) async {
       });
 
       // Add the video to the user's likedVideos array
-      var userDocRef = FirebaseFirestore.instance.collection('Users').doc(userId);
+      var userDocRef =
+          FirebaseFirestore.instance.collection('Users').doc(userId);
       transaction.update(userDocRef, {
         'likedVideos': FieldValue.arrayUnion([videoId])
       });
@@ -154,10 +153,11 @@ Future<void> likeVideo(String videoId, String userId) async {
   }
 }
 
-Future<void> commentVideo(String videoId, String userId,String content) async {
+Future<void> commentVideo(String videoId, String userId, String content) async {
   try {
     // Get a reference to the video document
-    var videoDocRef = FirebaseFirestore.instance.collection('Videos').doc(videoId);
+    var videoDocRef =
+        FirebaseFirestore.instance.collection('Videos').doc(videoId);
 
     // Start a Firestore transaction
     await FirebaseFirestore.instance.runTransaction((transaction) async {
@@ -187,7 +187,8 @@ Future<void> commentVideo(String videoId, String userId,String content) async {
       // transaction.update(videoDocRef, {'likeCount': newLikeCount});
 
       // Add an entry to the Likes collection
-      var commentDocRef = FirebaseFirestore.instance.collection('Comments').doc();
+      var commentDocRef =
+          FirebaseFirestore.instance.collection('Comments').doc();
       transaction.set(commentDocRef, {
         'videoID': videoId,
         'userID': userId,
@@ -212,15 +213,15 @@ Future<List<Comment>> getVideoComments(String videoId) async {
   try {
     var commentsQuerySnapshot = await FirebaseFirestore.instance
         .collection('Comments')
-        .where('videoID', isEqualTo: videoId) 
+        .where('videoID', isEqualTo: videoId)
         .get();
-        // print(commentsQuerySnapshot.docs);
-        List<Comment> comments = commentsQuerySnapshot.docs.map((doc) {
-        return Comment(
-          videoId: doc['videoID'],
-          userId: doc['userID'],
-          content: doc['content'],
-          timestamp: doc['timestamp'].toDate(),
+    // print(commentsQuerySnapshot.docs);
+    List<Comment> comments = commentsQuerySnapshot.docs.map((doc) {
+      return Comment(
+        videoId: doc['videoID'],
+        userId: doc['userID'],
+        content: doc['content'],
+        timestamp: doc['timestamp'].toDate(),
       );
     }).toList();
     return comments;
@@ -231,34 +232,29 @@ Future<List<Comment>> getVideoComments(String videoId) async {
 }
 
 Future<String> getUserName(String userId) async {
-  try{
-      var userQuerySnapshot = await FirebaseFirestore.instance
-      .collection('Users')
-      .doc(userId)
-      .get();
-      if (userQuerySnapshot.exists) {
+  try {
+    var userQuerySnapshot =
+        await FirebaseFirestore.instance.collection('Users').doc(userId).get();
+    if (userQuerySnapshot.exists) {
       return userQuerySnapshot.data()?['name'];
-
     } else {
       print('User document does not exist');
       return 'null';
-      }
-  } catch(e){
+    }
+  } catch (e) {
     print('Error fetching comments: $e');
     return 'Null';
   }
 }
 
 Future<Users> getUser(String userId) async {
-  try{
-      var userQuerySnapshot = await FirebaseFirestore.instance
-      .collection('Users')
-      .doc(userId)
-      .get();
-      if (userQuerySnapshot.exists) {
-        print(userQuerySnapshot.data()?['email']);
-        print(userQuerySnapshot.data()?['name']);
-        Users returnVar = Users(
+  try {
+    var userQuerySnapshot =
+        await FirebaseFirestore.instance.collection('Users').doc(userId).get();
+    if (userQuerySnapshot.exists) {
+      print(userQuerySnapshot.data()?['email']);
+      print(userQuerySnapshot.data()?['name']);
+      Users returnVar = Users(
         email: userQuerySnapshot.data()?['email'],
         name: userQuerySnapshot.data()?['name'],
         url: userQuerySnapshot.data()?['url'],
@@ -268,10 +264,30 @@ Future<Users> getUser(String userId) async {
       return returnVar;
     } else {
       print('User document does not exist');
-      return Users(email: '', likedVideos: [], name: '', url: '', isMerchant: false);
-      }
-  } catch(e){
+      return Users(
+          email: '', likedVideos: [], name: '', url: '', isMerchant: false);
+    }
+  } catch (e) {
     print('Error fetching users: $e');
-    return Users(email: '', likedVideos: [], name: '', url: '', isMerchant: false);
+    return Users(
+        email: '', likedVideos: [], name: '', url: '', isMerchant: false);
+  }
+}
+
+Future<List<String>> getVideos({required String userId}) async {
+  try {
+    var videoQuery = await FirebaseFirestore.instance
+        .collection('Videos')
+        .where('ownerID', isEqualTo: userId)
+        .get();
+
+    List<String> videoUrls = videoQuery.docs.map((doc) {
+      return doc['url'] as String; // Cast each 'url' to String
+    }).toList();
+
+    return videoUrls;
+  } catch (e) {
+    print('Error fetching videos: $e');
+    return [];
   }
 }

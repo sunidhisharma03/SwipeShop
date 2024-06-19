@@ -61,7 +61,6 @@ class MyApp extends StatelessWidget {
 
 class IndexPage extends StatefulWidget {
   const IndexPage({Key? key});
-  
 
   @override
   State<IndexPage> createState() => _IndexPageState();
@@ -97,12 +96,12 @@ class _IndexPageState extends State<IndexPage> {
   }
 
   Future<void> _getUserDetails() async {
-      var userId = FirebaseAuth.instance.currentUser!.uid;
-      Users current;
-      current = await getUser(userId);
-      setState(() {
-        currentUser = current;
-      });
+    var userId = FirebaseAuth.instance.currentUser!.uid;
+    Users current;
+    current = await getUser(userId);
+    setState(() {
+      currentUser = current;
+    });
   }
 
   @override
@@ -161,7 +160,6 @@ class _IndexPageState extends State<IndexPage> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Search(),
-            
             VideoListScreen(),
             Inbox(),
           ],
