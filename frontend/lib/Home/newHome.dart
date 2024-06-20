@@ -48,40 +48,56 @@ class _newHomeState extends State<newHome> {
   }
 }
 
-class VideoListScreen extends StatelessWidget {
+class VideoListScreen extends StatefulWidget {
+  @override
+  _VideoListScreenState createState() => _VideoListScreenState();
+}
+
+class _VideoListScreenState extends State<VideoListScreen> {
   final CollectionReference videosCollection =
       FirebaseFirestore.instance.collection('Videos');
-  final String apiUrl = 'http://10.0.2.2:8000';
+  final String apiUrl = 'http://10.0.2.2:8000/recommendations/';
   List<dynamic>? to_display;
 
-  Future<void> fetchapi() async{
-    try{
-      var userId = FirebaseAuth.instance.currentUser!.uid;
-      var name = getUserName(userId);
-      print('Helo');
-      final response = await http.post(Uri.parse(apiUrl),
-      body: {
-        'user_id_1': name,
-      }
-      );
+  @override
+  void initState() {
+    super.initState();
+    fetchapi();
+  }
 
-      if(response.statusCode == 200){
-      final body = response.body;
-      print(body);
-      final json = jsonDecode(body);
-      print(json);
-      final listJson = json.toList();
-      print(listJson);
-      to_display = listJson;
+  Future<void> fetchapi() async {
+    try {
+      var userId = FirebaseAuth.instance.currentUser!.uid;
+      String name = await getUserName(userId);
+      print(name);
+      print('Hello $name');
+
+      final response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        final body = response.body;
+        print(body);
+        final json = jsonDecode(body);
+        print("Herejson is $json");
+        if (name == "Anon") {
+          to_display = json[0]["Anon_based_on_ash"];
+        } else {
+          to_display = json[0]["ash_based_on_Anon"];
+        }
+        print(to_display);
+        setState(() {
+          // Ensure to_display is updated
+          to_display = to_display;
+        });
+      } else {
+        print('GET request failed with status: ${response.statusCode}');
+        print('Response: ${response.body}');
       }
-      else{
-        print('POST request failed with status: ${response.statusCode}');
-      print('Response: ${response.body}');
-      }
-    }catch(e){
-      print('Error sending POST request: $e');
+    } catch (e) {
+      print('Error sending GET request: $e');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,9 +120,15 @@ class VideoListScreen extends StatelessWidget {
             if (!snapshot.hasData) {
               return Center(child: CircularProgressIndicator());
             }
-            fetchapi();
 
-            final videos = snapshot.data!.docs.where((doc) => to_display!.contains(doc.id)).map((doc) {
+            if (to_display == null) {
+              // Handle case where to_display is still null (optional)
+              return Center(child: CircularProgressIndicator());
+            }
+
+            final videos = snapshot.data!.docs
+                .where((doc) => to_display!.contains(doc.id))
+                .map((doc) {
               return {
                 'id': doc.id,
                 'url': doc['url'],
@@ -129,6 +151,7 @@ class VideoListScreen extends StatelessWidget {
     );
   }
 }
+
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;

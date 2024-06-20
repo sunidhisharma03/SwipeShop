@@ -18,8 +18,8 @@ logger = logging.getLogger(__name__)
 # Define the request model for the API endpoint
 
 
-class RecommendationRequest(BaseModel):
-    user_id_1: str 
+# class RecommendationRequest(BaseModel):
+#     user_id_1: str 
     # top_n: int = 15
 
 
@@ -27,8 +27,8 @@ class VideoDetectionRequest(BaseModel):
     video_id: str
 
 
-@router.post("/recommendations/", response_model=List[Dict])
-def get_recommendations(request: RecommendationRequest) -> List[Dict]:
+@router.get("/recommendations/", response_model=List[Dict])
+def get_recommendations():
     # Retrieve user data
     users_ref = db.collection('Users')
     users_docs = users_ref.stream()
@@ -48,7 +48,7 @@ def get_recommendations(request: RecommendationRequest) -> List[Dict]:
     df = pd.DataFrame(binary_data, index=all_videos).T
 
     # Get recommendations
-    recommendations = recommend_videos(df, user1=request.user_id_1)
+    recommendations = recommend_videos(df)
     return [recommendations]
 
 
