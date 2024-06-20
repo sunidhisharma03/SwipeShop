@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:chewie/chewie.dart';
@@ -11,6 +13,7 @@ import 'package:swipeshop_frontend/firebase_options.dart';
 import 'package:swipeshop_frontend/services/customChewieControls.dart';
 import 'package:swipeshop_frontend/services/videoServices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,9 +48,55 @@ class _newHomeState extends State<newHome> {
   }
 }
 
-class VideoListScreen extends StatelessWidget {
+class VideoListScreen extends StatefulWidget {
+  @override
+  _VideoListScreenState createState() => _VideoListScreenState();
+}
+
+class _VideoListScreenState extends State<VideoListScreen> {
   final CollectionReference videosCollection =
       FirebaseFirestore.instance.collection('Videos');
+  final String apiUrl = 'http://10.0.2.2:8000/recommendations/';
+  List<dynamic>? to_display;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchapi();
+  }
+
+  Future<void> fetchapi() async {
+    try {
+      var userId = FirebaseAuth.instance.currentUser!.uid;
+      String name = await getUserName(userId);
+      print(name);
+      print('Hello $name');
+
+      final response = await http.get(Uri.parse(apiUrl));
+
+      if (response.statusCode == 200) {
+        final body = response.body;
+        print(body);
+        final json = jsonDecode(body);
+        print("Herejson is $json");
+        if (name == "Anon") {
+          to_display = json[0]["Anon_based_on_ash"];
+        } else {
+          to_display = json[0]["ash_based_on_Anon"];
+        }
+        print(to_display);
+        setState(() {
+          // Ensure to_display is updated
+          to_display = to_display;
+        });
+      } else {
+        print('GET request failed with status: ${response.statusCode}');
+        print('Response: ${response.body}');
+      }
+    } catch (e) {
+      print('Error sending GET request: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +120,22 @@ class VideoListScreen extends StatelessWidget {
             if (!snapshot.hasData) {
               return Center(child: CircularProgressIndicator());
             }
-            final videos = snapshot.data!.docs.map((doc) {
+
+            if (to_display == null) {
+              // Handle case where to_display is still null (optional)
+              return Center(child: CircularProgressIndicator());
+            }
+
+            final videos = snapshot.data!.docs
+                .where((doc) => to_display!.contains(doc.id))
+                .map((doc) {
               return {
                 'id': doc.id,
                 'url': doc['url'],
               };
             }).toList();
+            print(videos);
+
             return PageView.builder(
               scrollDirection: Axis.vertical,
               itemCount: videos.length,
@@ -92,6 +151,7 @@ class VideoListScreen extends StatelessWidget {
     );
   }
 }
+
 
 class VideoPlayerItem extends StatefulWidget {
   final String videoUrl;
