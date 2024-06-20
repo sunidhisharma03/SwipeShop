@@ -23,7 +23,11 @@ binary_data = {user: [1 if video in liked_videos else 0 for video in all_videos]
 df = pd.DataFrame(binary_data, index=all_videos).T
 
 # Function to recommend videos
-def recommend_videos(df: pd.DataFrame, user1: str, user2: str) -> Dict[str, List[str]]:
+def recommend_videos(df: pd.DataFrame, user1: str) -> Dict[str, List[str]]:
+    if (user1=='ash'): 
+        user2='Anon' 
+    else:
+        user2 = 'ash'
     liked_by_user1 = df.loc[user1] == 1
     liked_by_user2 = df.loc[user2] == 1
     liked_by_both = liked_by_user1 & liked_by_user2
@@ -36,8 +40,10 @@ def recommend_videos(df: pd.DataFrame, user1: str, user2: str) -> Dict[str, List
 
     recommendations = {
         f"recommended_videos_for_{user2}_based_on_{user1}": recommended_videos_1_to_2,
-        f"recommended_videos_for_{user1}_based_on_{user2}": recommended_videos_2_to_1
+  
     }
+
+
 
     return recommendations
 

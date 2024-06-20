@@ -19,8 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 class RecommendationRequest(BaseModel):
-    user_id_1: str
-    user_id_2: str
+    user_id_1: str 
     # top_n: int = 15
 
 
@@ -49,7 +48,7 @@ def get_recommendations(request: RecommendationRequest) -> List[Dict]:
     df = pd.DataFrame(binary_data, index=all_videos).T
 
     # Get recommendations
-    recommendations = recommend_videos(df, user1=request.user_id_1, user2=request.user_id_2)
+    recommendations = recommend_videos(df, user1=request.user_id_1)
     return [recommendations]
 
 
