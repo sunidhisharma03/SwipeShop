@@ -56,11 +56,12 @@ class VideoListScreen extends StatelessWidget {
 
   Future<void> fetchapi() async{
     try{
+      var userId = FirebaseAuth.instance.currentUser!.uid;
+      var name = getUserName(userId);
       print('Helo');
       final response = await http.post(Uri.parse(apiUrl),
       body: {
-        'user1': 'Anon',
-        'user2': 'ash',
+        'user_id_1': name,
       }
       );
 
