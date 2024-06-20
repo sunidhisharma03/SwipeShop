@@ -291,3 +291,24 @@ Future<List<String>> getVideos({required String userId}) async {
     return [];
   }
 }
+
+Future<List<String>>  getChat(
+    {required String userId, required String sellerId}) async {
+  try {
+    var chatQuery = await FirebaseFirestore.instance
+        .collection('Chats')
+        .where('senderID', whereIn: [userId, sellerId])
+        .where('receiverID', whereIn: [userId, sellerId])
+        .orderBy(
+            'timestamp') // Assuming you have a timestamp field for sorting messages
+        .get();
+    List<String> chat = chatQuery.docs.map((doc) {
+      return doc['content'] as String;
+    }).toList();
+    
+    return chat;
+  } catch (e) {
+    print(e);
+    return [];
+  }
+}

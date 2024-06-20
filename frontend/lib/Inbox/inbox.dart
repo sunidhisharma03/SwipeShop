@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:swipeshop_frontend/Inbox/chat_demo.dart';
 
 class Inbox extends StatefulWidget {
   const Inbox({super.key});
@@ -37,7 +39,7 @@ class _InboxState extends State<Inbox> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 10, // Placeholder count for items
+                    itemCount: 1, // Placeholder count for items
                     itemBuilder: (context, index) {
                       return Container(
                         margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -59,7 +61,7 @@ class _InboxState extends State<Inbox> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Seller Name $index', // Placeholder seller name
+                                    'Sunidhi', // Placeholder seller name
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
@@ -68,13 +70,26 @@ class _InboxState extends State<Inbox> {
                                   ),
                                   SizedBox(height: 8),
                                   Text(
-                                    'This is a small text content for the inbox item $index.', // Placeholder text content
+                                    'I wanted to buy the shoe you showed', // Placeholder text content
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 14,
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => ChatDemo()),
+                                        );
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.black),
+                                      child: Icon(
+                                        Iconsax.arrow_right,
+                                      ))
                                 ],
                               ),
                             ),

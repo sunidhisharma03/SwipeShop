@@ -218,7 +218,6 @@ class VideoPlayerWidget extends StatefulWidget {
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   late VideoPlayerController _controller;
-  bool _isPlaying = false;
 
   @override
   void initState() {
@@ -272,25 +271,21 @@ class _PlayPauseOverlay extends StatelessWidget {
       onTap: () {
         controller.value.isPlaying ? controller.pause() : controller.play();
       },
-      child: Stack(
-        children: <Widget>[
-          AnimatedSwitcher(
-            duration: Duration(milliseconds: 50),
-            reverseDuration: Duration(milliseconds: 200),
-            child: controller.value.isPlaying
-                ? SizedBox.shrink()
-                : Container(
-                    color: Colors.black26,
-                    child: Center(
-                      child: Icon(
-                        Icons.play_arrow,
-                        color: Colors.white,
-                        size: 100.0,
-                      ),
-                    ),
+      child: AnimatedSwitcher(
+        duration: Duration(milliseconds: 50),
+        reverseDuration: Duration(milliseconds: 200),
+        child: controller.value.isPlaying
+            ? SizedBox.shrink()
+            : Container(
+                color: Colors.transparent,
+                child: Center(
+                  child: Icon(
+                    Icons.play_arrow,
+                    color: Colors.transparent,
+                    size: 50.0,
                   ),
-          ),
-        ],
+                ),
+              ),
       ),
     );
   }

@@ -110,8 +110,8 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
   bool isLiked = false;
   var title = '';
   var description = '';
-  var creatorId = '';
-  var userId = '';
+  var creatorId;
+  var userId = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   void initState() {

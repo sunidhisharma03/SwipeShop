@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swipeshop_frontend/services/videoServices.dart';
+import 'package:swipeshop_frontend/services/videoServices.dart'; // Import your ChatService
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Chat extends StatefulWidget {
   final String userId;
@@ -22,13 +23,50 @@ class _ChatState extends State<Chat> {
   void initState() {
     super.initState();
     getUN();
+    fetchMessages();
   }
 
   Future<void> getUN() async {
-    var user = await getUserName(widget.sellerId);
-    setState(() {
-      sellerNameFuture = user;
-    });
+    try {
+      var user = await getUserName(widget.sellerId);
+      setState(() {
+        sellerNameFuture = user;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> fetchMessages() async {
+    try {
+      var fetchedMessages =
+          await getChat(userId: widget.userId, sellerId: widget.sellerId);
+      print(
+          "fakljsldkfjalsjflkasjdfkljsalfkjasdlkfjasdklfjaslkfjhjaskfhsdkljflksdjflakdsjfklsadjf");
+      print(fetchedMessages);
+      setState(() {
+        messages.addAll(fetchedMessages);
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> sendMessage(String message) async {
+    try {
+      await FirebaseFirestore.instance.collection('Chats').add({
+        'senderID': widget.userId,
+        'receiverID': widget.sellerId,
+        'content': message,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      setState(() {
+        messages.insert(0, message); // Add message to the list at the beginning
+        _controller.clear(); // Clear the text field after sending message
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -37,7 +75,7 @@ class _ChatState extends State<Chat> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text(sellerNameFuture,
+          title: Text(sellerNameFuture ?? '',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -50,10 +88,31 @@ class _ChatState extends State<Chat> {
           children: [
             Expanded(
               child: ListView.builder(
+                reverse: true, // Start from the bottom
                 itemCount: messages.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(messages[index]),
+                  return Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 14,
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        messages[index],
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   );
                 },
               ),
@@ -70,14 +129,18 @@ class _ChatState extends State<Chat> {
                         hintText: 'Enter your message...',
                       ),
                       onSubmitted: (value) {
-                        sendMessage(value);
+                        if (value.isNotEmpty) {
+                          sendMessage(value);
+                        }
                       },
                     ),
                   ),
                   IconButton(
                     icon: Icon(Icons.send),
                     onPressed: () {
-                      sendMessage(_controller.text);
+                      if (_controller.text.isNotEmpty) {
+                        sendMessage(_controller.text);
+                      }
                     },
                   ),
                 ],
@@ -87,13 +150,6 @@ class _ChatState extends State<Chat> {
         ),
       ),
     );
-  }
-
-  void sendMessage(String message) {
-    setState(() {
-      messages.add(message); // Add message to the list
-      _controller.clear(); // Clear the text field after sending message
-    });
   }
 
   @override
